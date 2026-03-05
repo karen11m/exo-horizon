@@ -10,20 +10,18 @@ Mi portafolio profesional para mostrar mis servicios de desarrollo web y automat
 ## Instalación Local
 
 1. Clona el repositorio
-2. Entra en la carpeta del proyecto:
-   ```bash
-   cd karen-portfolio
-   ```
-3. Instala las dependencias:
+2. Instala las dependencias:
    ```bash
    pip install -r requirements.txt
    ```
+
 
 3. Ejecuta el servidor:
    ```bash
    python app.py
    ```
 4. Abre http://127.0.0.1:5000
+
 
 ## Publicación
 
@@ -35,10 +33,10 @@ Este proyecto está listo para publicarse en **Render.com**.
 3. Crea un nuevo **Web Service**.
 4. Conecta tu repositorio de GitHub.
 5. Configura:
-   - **Root Directory**: `karen-portfolio`
    - **Build Command**: `pip install -r requirements.txt`
    - **Start Command**: `gunicorn app:app`
 6. ¡Publica!
+
 
 
 ## Panel de Admin
