@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import requests
 import os
@@ -9,6 +9,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
+
 
 # Configuración de Supabase
 SUPABASE_URL = "https://yacevykyrygfjlqalwfa.supabase.co"
@@ -110,20 +111,21 @@ def get_messages():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+@app.route('/')
+def serve_index():
+    return send_from_directory(BASE_DIR, 'index.html')
+
+@app.route('/admin')
+def serve_admin():
+    return send_from_directory(BASE_DIR, 'admin_dashboard.html')
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(BASE_DIR, filename)
+
 if __name__ == '__main__':
     print("Servidor listo. Conectado a Supabase.")
-    from flask import send_from_directory
-    
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-    @app.route('/')
-    def serve_index():
-        return send_from_directory(BASE_DIR, 'index.html')
-    @app.route('/admin')
-    def serve_admin():
-        return send_from_directory(BASE_DIR, 'admin_dashboard.html')
-    @app.route('/<path:filename>')
-    def serve_static(filename):
-        return send_from_directory(BASE_DIR, filename)
-    
     app.run(debug=True, port=5000)
+
