@@ -117,7 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.textContent = "Enviando...";
             btn.disabled = true;
 
-            fetch('http://localhost:5000/api/contact', {
+            fetch('/api/contact', {
+
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, type, message })
@@ -155,26 +156,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // 8. Cargar proyectos de GitHub
     const GITHUB_USERNAME = 'karen11m';
     const projectsGrid = document.getElementById('github-projects');
-    
+
     async function loadGitHubProjects() {
         try {
             const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`);
             const repos = await response.json();
-            
+
             if (!Array.isArray(repos)) {
                 projectsGrid.innerHTML = '<p>Error al conectar con GitHub.</p>';
                 return;
             }
-            
+
             projectsGrid.innerHTML = ''; // Limpiar mensaje de carga
-            
+
             repos.forEach(repo => {
                 // Mostrar todos los repos públicos (sin filtro de lenguaje)
                 const card = document.createElement('div');
                 card.className = 'project-card fade-in';
                 const lang = repo.language || 'Código';
                 const desc = repo.description || 'Proyecto de desarrollo';
-                
+
                 card.innerHTML = `
                     <div class="project-content">
                         <span class="project-tag">${lang}</span>
@@ -185,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
                 projectsGrid.appendChild(card);
             });
-            
+
             if (projectsGrid.innerHTML === '') {
                 projectsGrid.innerHTML = '<p>No se encontraron proyectos.</p>';
             }
@@ -207,11 +208,11 @@ function openModal(title, description, link) {
     const modalTitle = document.getElementById('modal-title');
     const modalDesc = document.getElementById('modal-description');
     const modalLink = document.getElementById('modal-link');
-    
+
     modalTitle.textContent = title;
     modalDesc.textContent = description || 'Proyecto de ' + GITHUB_USERNAME;
     modalLink.href = link;
-    
+
     modal.style.display = 'block';
 }
 
