@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karen Méndez Dev | Soluciones Digitales y Automatización</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script defer src="main.js"></script>
+</head>
+
+<body>
+    <!-- 1. Encabezado / Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#inicio" class="logo">Karen Méndez <span>Dev</span></a>
+            <button class="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#proceso">Proceso</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contacto" class="btn-contact">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="container hero-content fade-in">
+                <div class="hero-text">
+                    <span class="hero-badge">💻 Desarrolladora Full-Stack</span>
+                    <h1 class="hero-title">Transformo tus ideas en <span class="highlight">soluciones digitales</span> que funcionan</h1>
+                    <p class="hero-subtitle">Soy Karen Méndez, ingeniera de sistemas especializada en desarrollo web, automatización de procesos e Inteligencia Artificial. Creo herramientas que generan resultados reales para tu negocio.</p>
+                    <div class="hero-buttons">
+                        <a href="#contacto" class="btn btn-primary">🚀 Agenda una consultoría</a>
+                        <a href="#proyectos" class="btn btn-secondary">Ver mis proyectos</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Proyectos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Remoto</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Disponibilidad</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-card">
+                        <div class="profile-img">
+                            <span>KM</span>
+                        </div>
+                        <h3>Karen Méndez</h3>
+                        <p>Desarrolladora Full-Stack</p>
+                        <div class="profile-links">
+                            <a href="https://github.com/karen11m" target="_blank">GitHub</a>
+                            <a href="https://wa.me/573006707655" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Elemento decorativo de fondo -->
+            <div class="glow-bg"></div>
+        </section>
+
+        <!-- 3. Servicios -->
+        <!-- BACKEND INTEGRATION: Podrías cargar la lista de servicios dinámicamente desde la base de datos a través de una API en Python. -->
+        <section id="servicios" class="services section-padding">
+            <div class="container">
+                <h2 class="section-title fade-in">Cómo puedo ayudarte</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🌐</div>
+                        <h3>Desarrollo Web</h3>
+                        <p>No más sitios genéricos. Diseño y desarrollo páginas de aterrizaje (Landing Pages)
+                            magnéticas, portafolios impactantes y sitios corporativos optimizados que realmente atraen
+                            clientes y cargan a la velocidad de la luz.</p>
+                        <p class="service-example"><strong>Ejemplo:</strong> Sitio web de reservas para clínicas o
+                            restaurantes.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">⚡</div>
+                        <h3>Automatización y Procesos</h3>
+                        <p>El tiempo es dinero. Programo scripts personalizados e integraciones de software para que
+                            dejes de copiar y pegar todo el día. Reduzco las tareas manuales de horas a solo segundos.
+                        </p>
+                        <p class="service-example"><strong>Ejemplo:</strong> Sincronización automática de hojas de
+                            Google con tu CRM.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🤖</div>
+                        <h3>Proyectos con IA</h3>
+                        <p>Llevo tu negocio al futuro. Implemento modelos de inteligencia artificial como ChatGPT u
+                            otros en tus procesos internos para atención al cliente, análisis de texto masivo o
+                            clasificación de datos.</p>
+                        <p class="service-example"><strong>Ejemplo:</strong> Chatbot inteligente para responder dudas en
+                            WhatsApp 24/7.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Proceso (Cómo trabajo) -->
+        <section id="proceso" class="process section-padding bg-alt">
+            <div class="container">
+                <h2 class="section-title fade-in">Mi Proceso de Trabajo</h2>
+                <div class="process-steps">
+                    <div class="step fade-in">
+                        <div class="step-num">01</div>
+                        <h3>Entendimiento del problema</h3>
+                        <p>Nos reunimos (virtual o texto) para sumergirnos en tu negocio. Escucho tus dolores, analizo
+                            el problema raíz y defino los objetivos claros del proyecto.</p>
+                    </div>
+                    <div class="step fade-in">
+                        <div class="step-num">02</div>
+                        <h3>Propuesta de solución</h3>
+                        <p>Diseño un plan de acción a la medida, seleccionando las mejores tecnologías, junto con un
+                            prototipo visual o mapa de flujo según el caso, y un presupuesto claro.</p>
+                    </div>
+                    <div class="step fade-in">
+                        <div class="step-num">03</div>
+                        <h3>Desarrollo y pruebas</h3>
+                        <p>Escribo el código. Te mantengo al tanto con avances periódicos. Antes de terminar, pruebo
+                            exhaustivamente que la solución sea robusta, segura y fácil de usar.</p>
+                    </div>
+                    <div class="step fade-in">
+                        <div class="step-num">04</div>
+                        <h3>Entrega y soporte</h3>
+                        <p>Te entrego el proyecto funcionando, te enseño a utilizarlo y ofrezco un periodo de
+                            acompañamiento para asegurar que todo avance sin problemas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Proyectos -->
+        <section id="proyectos" class="projects section-padding">
+            <div class="container">
+                <h2 class="section-title fade-in">Proyectos Destacados</h2>
+                <div class="projects-grid">
+                    <!-- Proyectos estáticos originales -->
+                    <div class="project-card fade-in">
+                        <div class="project-content">
+                            <span class="project-tag">Landing Page</span>
+                            <h3>Sistema de Reservas "BiteFast"</h3>
+                            <p class="project-problem"><strong>Problema:</strong> Un restaurante perdía ventas porque sus clientes no podían reservar mesa fuera del horario de atención telefónica.</p>
+                            <p class="project-solution"><strong>Solución:</strong> Landing page optimizada con un widget de reservas conectado en tiempo real.</p>
+                            <button class="btn btn-outline" onclick="openModal('BiteFast', 'Sistema de reservas para restaurante. Landing page con widget de reservas conectado al calendario del dueño.', '#')">Ver detalles</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <div class="project-content">
+                            <span class="project-tag">Chatbot IA</span>
+                            <h3>Asistente "StyleBot"</h3>
+                            <p class="project-problem"><strong>Problema:</strong> Una tienda de ropa recibía cientos de mensajes por Instagram preguntando tallas y precios.</p>
+                            <p class="project-solution"><strong>Solución:</strong> Chatbot con IA capaz de recomendar ropa y gestionar pedidos automáticamente.</p>
+                            <button class="btn btn-outline" onclick="openModal('StyleBot', 'Chatbot con IA para tienda de ropa. Recomienda productos y gestiona pedidos.', '#')">Ver detalles</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <div class="project-content">
+                            <span class="project-tag">Dashboard</span>
+                            <h3>Panel de Ventas Unificado</h3>
+                            <p class="project-problem"><strong>Problema:</strong> Un cliente gastaba 10 horas semanales uniendo Excels de Shopify y MercadoLibre.</p>
+                            <p class="project-solution"><strong>Solución:</strong> Script en Python que extrae datos y alimenta un Dashboard centralizado.</p>
+                            <button class="btn btn-outline" onclick="openModal('Panel de Ventas', 'Dashboard unificado para ventas de Shopify y MercadoLibre. Automatización con Python.', '#')">Ver detalles</button>
+                        </div>
+                    </div>
+
+                    <!-- Proyectos de GitHub -->
+                    <div id="github-projects">
+                        <!-- Se cargan dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal para detalles del proyecto -->
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-title">Título del Proyecto</h2>
+                <p id="modal-description">Descripción</p>
+                <a id="modal-link" href="#" target="_blank" class="btn btn-primary">Ver en GitHub</a>
+            </div>
+        </div>
+
+        <!-- 6. Sobre mí -->
+        <section id="sobre-mi" class="about section-padding bg-alt">
+            <div class="container about-container">
+                <div class="about-image fade-in">
+                    <!-- Placeholder de imagen -->
+                    <div class="img-placeholder">
+                        <span>Foto de Karen</span>
+                    </div>
+                </div>
+                <div class="about-text fade-in">
+                    <h2 class="section-title text-left">Sobre mí</h2>
+                    <p>¡Hola! Soy <strong>Karen Méndez</strong>, estudiante de Ingeniería de Sistemas y desarrolladora
+                        full-stack apasionada por la tecnología.</p>
+                    <p>Mi frase de cabecera es: <em>"Cuéntame tu problema y yo construyo la solución digital más
+                            adecuada"</em>. No me limito a hacer páginas bonitas, sino que creo herramientas funcionales
+                        que aportan valor real a negocios de todos los tamaños.</p>
+                    <p>Me especializo en crear aplicaciones web modernas y me divierte enormemente automatizar esos
+                        procesos manuales que a nadie le gusta hacer.</p>
+                    <p>Trabajemos juntos. Opero de forma <strong>100% remota desde Bogotá, Colombia</strong> 🇨🇴,
+                        adaptándome al ritmo, cultura y huso horario de clientes de cualquier lugar del mundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Preguntas frecuentes -->
+        <section id="faq" class="faq section-padding">
+            <div class="container">
+                <h2 class="section-title fade-in">Preguntas Frecuentes</h2>
+                <div class="faq-list">
+                    <div class="faq-item fade-in">
+                        <div class="faq-question">
+                            <h3>¿Cuánto tarda un proyecto?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Depende de la complejidad. Una Landing Page puede tomar de 1 a 2 semanas, mientras que
+                                una automatización compleja o integración de IA puede llevar de 3 a 6 semanas. Todo
+                                quedará estipulado en la propuesta inicial.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in">
+                        <div class="faq-question">
+                            <h3>¿Cómo trabajamos si estoy en otro país?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>¡De manera muy fluida! Utilizamos herramientas asíncronas como Notion, correo y
+                                Slack/WhatsApp, y videollamadas por Google Meet o Zoom. Me adapto a tu huso horario para
+                                las reuniones importantes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in">
+                        <div class="faq-question">
+                            <h3>¿Qué tecnologías utilizas?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Dependiendo del problema, utilizo HTML/CSS/JS nativo, bases de datos SQL (PostgreSQL,
+                                MySQL), y desarrollo backend/scripts con Python (Flask/Django o scripts simples).
+                                También integro APIs modernas como las de OpenAI.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in">
+                        <div class="faq-question">
+                            <h3>¿Cuáles son las formas de pago?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Acepto transferencias bancarias (si estás en Colombia) o plataformas internacionales como
+                                PayPal, Wise y criptomonedas. Usualmente trabajo con 50% de anticipo y 50% contra
+                                entrega.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Contacto -->
+        <!-- BACKEND INTEGRATION: La propiedad 'action' de este formulario debería apuntar a tu ruta backend de Python (ej. /api/contact) para guardar en SQL o enviar por email. -->
+        <section id="contacto" class="contact section-padding bg-alt">
+            <div class="container contact-container">
+                <div class="contact-info fade-in">
+                    <h2 class="section-title text-left">Hablemos de tu proyecto</h2>
+                    <p>Si tienes un problema en tu negocio que crees que se puede resolver con tecnología, escríbeme.
+                        Sin compromisos.</p>
+
+                    <div class="contact-details">
+                        <div class="detail-item">
+                            <span class="icon">✉️</span>
+                            <a href="mailto:contacto@karenmendez.dev">contacto@karenmendez.dev</a>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon">📍</span>
+                            <span>Bogotá, Colombia (Remoto)</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/573006707655?text=Hola%20Karen,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo" target="_blank" class="btn btn-whatsapp">
+                        <span class="icon">📱</span> Escríbeme por WhatsApp
+                    </a>
+                </div>
+
+                <div class="contact-form-wrapper fade-in">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Tu Nombre</label>
+                            <input type="text" id="name" name="name" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Tu Email</label>
+                            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">Tipo de Proyecto</label>
+                            <select id="project-type" name="project-type" required>
+                                <option value="" disabled selected>Selecciona una opción...</option>
+                                <option value="web">Desarrollo Web (Landing, Web corporativa)</option>
+                                <option value="automation">Automatización (Scripts, Integraciones)</option>
+                                <option value="ai">Proyecto con IA (Chatbots, Análisis)</option>
+                                <option value="other">Otro / No estoy seguro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Cuéntame el problema o tu necesidad</label>
+                            <textarea id="message" name="message" rows="5"
+                                placeholder="Actualmente dedico muchas horas a..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn">Enviar Mensaje</button>
+                    </form>
+                    <div id="formStatus" class="form-status"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">Karen Méndez <span>Dev</span></div>
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://github.com/karen11m" target="_blank" aria-label="GitHub">GitHub</a>
+                <a href="#" aria-label="Instagram">Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Karen Méndez. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/573006707655?text=Hola%20Karen,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo" class="float-whatsapp" target="_blank" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    </a>
+</body>
+
+</html>
