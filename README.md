@@ -34,8 +34,9 @@ Este proyecto está listo para publicarse en **Render.com**.
 4. Conecta tu repositorio de GitHub.
 5. Configura:
    - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn app:app`
+   - **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT`
 6. ¡Publica!
+
 
 
 
