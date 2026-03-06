@@ -60,29 +60,28 @@ def contact():
         if not all([name, email, project_type, message_text]):
             return jsonify({'error': 'Todos los campos son obligatorios.'}), 400
 
-        # Guardar en Supabase
-        payload = {
-            "name": name,
-            "email": email,
-            "project_type": project_type,
-            "message": message_text,
-            "created_at": datetime.now().isoformat()
-        }
-        
-        response = requests.post(
-            f"{SUPABASE_URL}/rest/v1/messages",
-            headers=HEADERS,
-            json=payload
-        )
+        # Intentar guardar en Supabase solo si están configuradas las variables
+        if SUPABASE_URL and SUPABASE_KEY:
+            payload = {
+                "name": name,
+                "email": email,
+                "project_type": project_type,
+                "message": message_text,
+                "created_at": datetime.now().isoformat()
+            }
+            
+            response = requests.post(
+                f"{SUPABASE_URL}/rest/v1/messages",
+                headers=HEADERS,
+                json=payload
+            )
 
-        if response.status_code not in [200, 201]:
-            print(f"Error de Supabase: {response.text}")
-            return jsonify({'error': 'Error al guardar en la base de datos'}), 500
+            if response.status_code not in [200, 201]:
+                print(f"Error de Supabase: {response.text}")
 
-        # Intentar enviar correo
-        send_email(name, email, project_type, message_text)
-
-        print(f"Nuevo mensaje guardado en Supabase de: {name} ({email})")
+        # Intentar enviar correo solo si están configuradas las variables
+        if EMAIL_CONFIG["sender"] and EMAIL_CONFIG["password"]:
+            send_email(name, email, project_type, message_text)
         
         return jsonify({'success': '¡Mensaje guardado correctamente!'}), 201
 
