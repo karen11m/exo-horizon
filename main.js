@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.textContent = "Enviando...";
             btn.disabled = true;
 
-            fetch('/api/contact', {
+            fetch('https://exo-horizon.onrender.com/api/contact', {
 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
