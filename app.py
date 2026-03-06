@@ -11,9 +11,9 @@ app = Flask(__name__)
 CORS(app)
 
 
-# Configuración de Supabase
-SUPABASE_URL = "https://yacevykyrygfjlqalwfa.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhY2V2eWt5cnlnZmpscWFsd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MDA3MDAsImV4cCI6MjA4ODI3NjcwMH0.bZKVjqnCD8Q2xMyTHZDC9pw6L-WWLIZPUleuBwk49Bo"
+# Configuración de Supabase (Variables de entorno)
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -22,9 +22,9 @@ HEADERS = {
 }
 
 EMAIL_CONFIG = {
-    "sender": "tu_correo@gmail.com",
-    "password": "tu_app_password", 
-    "recipient": "tu_correo@gmail.com",
+    "sender": os.environ.get("EMAIL_SENDER", ""),
+    "password": os.environ.get("EMAIL_PASSWORD", ""),
+    "recipient": os.environ.get("EMAIL_RECIPIENT", ""),
     "smtp_server": "smtp.gmail.com",
     "smtp_port": 465
 }

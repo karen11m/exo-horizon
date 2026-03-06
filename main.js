@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // BACKEND INTEGRATION: Petición real al servidor Python (Flask) en puerto 5000
+            // Enviar datos al servidor
 
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
