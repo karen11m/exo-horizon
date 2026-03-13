@@ -60,7 +60,6 @@ def contact():
         if not all([name, email, project_type, message_text]):
             return jsonify({'error': 'Todos los campos son obligatorios.'}), 400
 
-        # Intentar guardar en Supabase solo si están configuradas las variables
         if SUPABASE_URL and SUPABASE_KEY:
             payload = {
                 "name": name,
@@ -126,7 +125,7 @@ def serve_static(filename):
 
 if __name__ == '__main__':
     print("Servidor listo. Conectado a Supabase.")
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 10000))
     app.run(debug=True, host='0.0.0.0', port=port)
 
 

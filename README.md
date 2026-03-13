@@ -22,20 +22,7 @@ Mi portafolio profesional para mostrar mis servicios de desarrollo web y automat
    ```
 4. Abre http://127.0.0.1:5000
 
-
-## Publicación
-
-Este proyecto está listo para publicarse en **Render.com**.
-
-### Pasos para publicar:
-1. Sube este código a **GitHub**.
-2. Ve a [Render.com](https://render.com) y regístrate.
-3. Crea un nuevo **Web Service**.
-4. Conecta tu repositorio de GitHub.
-5. Configura:
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT`
-6. ¡Publica!
+    
 
 
 
