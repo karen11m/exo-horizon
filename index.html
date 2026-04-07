@@ -4,28 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev | Soluciones Digitales y Automatización</title>
+    <title>Karen Méndez | Desarrolladora Full-Stack — Soluciones Digitales y Automatización</title>
+    <meta name="description" content="Soy Karen Méndez, desarrolladora full-stack en Bogotá, Colombia. Creo páginas web, apps, automatización de procesos e integración de IA para tu negocio.">
+    <meta name="keywords" content="desarrolladora full-stack, desarrollo web, automatización, inteligencia artificial, Bogotá, Colombia, freelance">
+    <meta name="author" content="Karen Méndez">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Karen Méndez | Desarrolladora Full-Stack">
+    <meta property="og:description" content="Transformo ideas en soluciones digitales que funcionan. Desarrollo web, apps, automatización e IA.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_CO">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Karen Méndez | Desarrolladora Full-Stack">
+    <meta name="twitter:description" content="Transformo ideas en soluciones digitales que funcionan.">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script defer src="main.js"></script>
 </head>
 
 <body>
+    <!-- Particles Background -->
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
     <!-- 1. Encabezado / Navbar -->
-    <header class="navbar">
+    <header class="navbar" role="banner">
         <div class="container nav-container">
-            <a href="#inicio" class="logo">Dev</a>
-            <button class="mobile-menu-btn" aria-label="Abrir menú">
+            <a href="#inicio" class="logo" aria-label="Ir al inicio">K<span class="logo-accent">M</span></a>
+            <button class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
                 <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </button>
-            <nav class="nav-links">
+            <nav class="nav-links" role="navigation" aria-label="Navegación principal">
                 <a href="#inicio">Inicio</a>
                 <a href="#servicios">Servicios</a>
                 <a href="#proceso">Proceso</a>
                 <a href="#proyectos">Proyectos</a>
                 <a href="#sobre-mi">Sobre mí</a>
+                <a href="#tech">Stack</a>
                 <a href="#faq">FAQ</a>
                 <a href="#contacto" class="btn-contact">Contacto</a>
             </nav>
@@ -35,12 +54,14 @@
     <main>
         <!-- 2. Hero Section -->
         <section id="inicio" class="hero">
-            <div class="container hero-content fade-in">
+            <div class="container hero-content">
                 <div class="hero-text">
-                    <span class="hero-badge">💻 Desarrollador Full-Stack & Apps</span>
-                    <h1 class="hero-title">Transformo tus ideas en <span class="highlight">soluciones digitales</span>
-                        que funcionan</h1>
-                    <p class="hero-subtitle">Soy desarrollador full-stack, especializado en desarrollo web, aplicaciones,
+                    <span class="hero-badge">
+                        <span class="status-dot"></span>
+                        Disponible para proyectos
+                    </span>
+                    <h1 class="hero-title">Transformo ideas en <span class="typing-text" id="typing-text"></span></h1>
+                    <p class="hero-subtitle">Soy desarrolladora full-stack especializada en desarrollo web, aplicaciones,
                         automatización de procesos e Inteligencia Artificial. Creo herramientas que generan resultados
                         reales para tu negocio.</p>
                     <div class="hero-buttons">
@@ -49,43 +70,50 @@
                     </div>
                     <div class="hero-stats">
                         <div class="stat">
-                            <span class="stat-number">20+</span>
+                            <span class="stat-number" data-target="20" data-suffix="+">0</span>
                             <span class="stat-label">Proyectos</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">100%</span>
+                            <span class="stat-number" data-target="100" data-suffix="%">0</span>
                             <span class="stat-label">Remoto</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">24/7</span>
+                            <span class="stat-number" data-fixed="24/7">24/7</span>
                             <span class="stat-label">Disponibilidad</span>
                         </div>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="profile-card">
-                        <div class="profile-img">
-                            <span>KM</span>
+                        <div class="profile-img-wrapper">
+                            <div class="profile-img">
+                                <span>KM</span>
+                            </div>
                         </div>
-                        <h3>Tu Desarrollador Full-Stack</h3>
+                        <h3>Karen Méndez</h3>
                         <p>Desarrolladora Full-Stack</p>
+                        <div class="profile-status">
+                            <span class="dot"></span> Disponible
+                        </div>
                         <div class="profile-links">
-                            <a href="https://github.com/karen11m" target="_blank">GitHub</a>
-                            <a href="https://wa.me/573006707655" target="_blank">WhatsApp</a>
+                            <a href="https://github.com/karen11m" target="_blank" rel="noopener noreferrer" aria-label="Perfil de GitHub">GitHub</a>
+                            <a href="https://wa.me/573006707655" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Elemento decorativo de fondo -->
-            <div class="glow-bg"></div>
+            <!-- Decorative glows -->
+            <div class="glow-bg" aria-hidden="true"></div>
+            <div class="glow-bg-2" aria-hidden="true"></div>
         </section>
 
         <!-- 3. Servicios -->
         <section id="servicios" class="services section-padding">
             <div class="container">
                 <h2 class="section-title fade-in">Cómo puedo ayudarte</h2>
+                <p class="section-subtitle fade-in">Soluciones tecnológicas a medida que impulsan tu negocio al siguiente nivel</p>
                 <div class="services-grid">
-                    <div class="service-card fade-in">
+                    <div class="service-card fade-in stagger-1">
                         <div class="service-icon">🌐</div>
                         <h3>Desarrollo Web</h3>
                         <p>No más sitios genéricos. Diseño y desarrollo páginas de aterrizaje (Landing Pages)
@@ -94,7 +122,7 @@
                         <p class="service-example"><strong>Ejemplo:</strong> Sitio web de reservas para clínicas o
                             restaurantes.</p>
                     </div>
-                    <div class="service-card fade-in">
+                    <div class="service-card fade-in stagger-2">
                         <div class="service-icon">📱</div>
                         <h3>Aplicaciones y Apps</h3>
                         <p>Llevo tu negocio a cualquier dispositivo. Desarrollo aplicaciones web progresivas (PWA) y apps
@@ -103,7 +131,7 @@
                         <p class="service-example"><strong>Ejemplo:</strong> App de delivery, gestión de pedidos o
                             inventario desde el celular.</p>
                     </div>
-                    <div class="service-card fade-in">
+                    <div class="service-card fade-in stagger-3">
                         <div class="service-icon">⚡</div>
                         <h3>Automatización y Procesos</h3>
                         <p>El tiempo es dinero. Programo scripts personalizados e integraciones de software para que
@@ -112,7 +140,7 @@
                         <p class="service-example"><strong>Ejemplo:</strong> Sincronización automática de hojas de
                             Google con tu CRM.</p>
                     </div>
-                    <div class="service-card fade-in">
+                    <div class="service-card fade-in stagger-4">
                         <div class="service-icon">🤖</div>
                         <h3>Proyectos con IA</h3>
                         <p>Llevo tu negocio al futuro. Implemento modelos de inteligencia artificial como ChatGPT u
@@ -129,26 +157,27 @@
         <section id="proceso" class="process section-padding bg-alt">
             <div class="container">
                 <h2 class="section-title fade-in">Mi Proceso de Trabajo</h2>
+                <p class="section-subtitle fade-in">De la idea a la realidad en cuatro pasos claros</p>
                 <div class="process-steps">
-                    <div class="step fade-in">
+                    <div class="step fade-in stagger-1">
                         <div class="step-num">01</div>
                         <h3>Entendimiento del problema</h3>
                         <p>Nos reunimos (virtual o texto) para sumergirnos en tu negocio. Escucho tus dolores, analizo
                             el problema raíz y defino los objetivos claros del proyecto.</p>
                     </div>
-                    <div class="step fade-in">
+                    <div class="step fade-in stagger-2">
                         <div class="step-num">02</div>
                         <h3>Propuesta de solución</h3>
                         <p>Diseño un plan de acción a la medida, seleccionando las mejores tecnologías, junto con un
                             prototipo visual o mapa de flujo según el caso, y un presupuesto claro.</p>
                     </div>
-                    <div class="step fade-in">
+                    <div class="step fade-in stagger-3">
                         <div class="step-num">03</div>
                         <h3>Desarrollo y pruebas</h3>
                         <p>Escribo el código. Te mantengo al tanto con avances periódicos. Antes de terminar, pruebo
                             exhaustivamente que la solución sea robusta, segura y fácil de usar.</p>
                     </div>
-                    <div class="step fade-in">
+                    <div class="step fade-in stagger-4">
                         <div class="step-num">04</div>
                         <h3>Entrega y soporte</h3>
                         <p>Te entrego el proyecto funcionando, te enseño a utilizarlo y ofrezco un periodo de
@@ -161,10 +190,10 @@
         <!-- 5. Proyectos -->
         <section id="proyectos" class="projects section-padding">
             <div class="container">
-                <h2 class="section-title fade-in">Proyectos y Aplicaciones Destacados</h2>
+                <h2 class="section-title fade-in">Proyectos Destacados</h2>
+                <p class="section-subtitle fade-in">Soluciones reales que resuelven problemas reales</p>
                 <div class="projects-grid">
-                    <!-- Proyectos estáticos originales -->
-                    <div class="project-card fade-in">
+                    <div class="project-card fade-in stagger-1">
                         <div class="project-content">
                             <span class="project-tag">Landing Page</span>
                             <h3>Sistema de Reservas "BiteFast"</h3>
@@ -178,7 +207,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card fade-in">
+                    <div class="project-card fade-in stagger-2">
                         <div class="project-content">
                             <span class="project-tag">Chatbot IA</span>
                             <h3>Asistente "StyleBot"</h3>
@@ -192,7 +221,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card fade-in">
+                    <div class="project-card fade-in stagger-3">
                         <div class="project-content">
                             <span class="project-tag">Dashboard</span>
                             <h3>Panel de Ventas Unificado</h3>
@@ -200,13 +229,13 @@
                                 uniendo Excels de Shopify y MercadoLibre.</p>
                             <p class="project-solution"><strong>Solución:</strong> Script en Python que extrae datos y
                                 alimenta un Dashboard centralizado.</p>
-<button class="btn btn-outline"
+                            <button class="btn btn-outline"
                                 onclick="openModal('Panel de Ventas', 'Dashboard unificado para ventas de Shopify y MercadoLibre. Automatización con Python.', 'https://github.com/karen11m/Panel-de-Ventas-Unificado')">Ver
                                 detalles</button>
                         </div>
                     </div>
 
-                    <div class="project-card fade-in">
+                    <div class="project-card fade-in stagger-4">
                         <div class="project-content">
                             <span class="project-tag">Aplicación Web</span>
                             <h3>Sistema de Inventario "StockFlow"</h3>
@@ -218,7 +247,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card fade-in">
+                    <div class="project-card fade-in stagger-5">
                         <div class="project-content">
                             <span class="project-tag">Automatización</span>
                             <h3>Scraper de Precios Competidores</h3>
@@ -230,7 +259,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card fade-in">
+                    <div class="project-card fade-in stagger-6">
                         <div class="project-content">
                             <span class="project-tag">IA & Machine Learning</span>
                             <h3>Clasificador de Correos Spam</h3>
@@ -242,7 +271,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card fade-in">
+                    <div class="project-card fade-in stagger-7">
                         <div class="project-content">
                             <span class="project-tag">App Móvil</span>
                             <h3>Gestor de Tareas "TaskGo"</h3>
@@ -263,12 +292,12 @@
         </section>
 
         <!-- Modal para detalles del proyecto -->
-        <div id="project-modal" class="modal">
+        <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <div class="modal-content">
-                <span class="close-modal">&times;</span>
+                <span class="close-modal" role="button" aria-label="Cerrar modal" tabindex="0">&times;</span>
                 <h2 id="modal-title">Título del Proyecto</h2>
                 <p id="modal-description">Descripción</p>
-                <a id="modal-link" href="#" target="_blank" class="btn btn-primary">Ver en GitHub</a>
+                <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver en GitHub</a>
             </div>
         </div>
 
@@ -276,14 +305,13 @@
         <section id="sobre-mi" class="about section-padding bg-alt">
             <div class="container about-container">
                 <div class="about-image fade-in">
-                    <!-- Placeholder de imagen -->
                     <div class="img-placeholder">
                         <span>Foto de Karen</span>
                     </div>
                 </div>
                 <div class="about-text fade-in">
                     <h2 class="section-title text-left">Sobre mí</h2>
-                    <p>¡Hola! Soy <strong>Karen Méndez</strong>, estudiante de Ingeniería de Sistemas y desarrolladora
+                    <p style="margin-top: 2rem;">¡Hola! Soy <strong>Karen Méndez</strong>, estudiante de Ingeniería de Sistemas y desarrolladora
                         full-stack apasionada por la tecnología.</p>
                     <p>Mi frase de cabecera es: <em>"Cuéntame tu problema y yo construyo la solución digital más
                             adecuada"</em>. No me limito a hacer páginas bonitas, sino que creo herramientas funcionales
@@ -296,13 +324,81 @@
             </div>
         </section>
 
-        <!-- 7. Preguntas frecuentes -->
+        <!-- 7. Tech Stack -->
+        <section id="tech" class="tech section-padding">
+            <div class="container">
+                <h2 class="section-title fade-in">Mi Stack Tecnológico</h2>
+                <p class="section-subtitle fade-in">Las herramientas que uso para construir tus soluciones</p>
+                <div class="tech-grid">
+                    <div class="tech-item fade-in stagger-1">
+                        <svg viewBox="0 0 128 128" fill="#E44D26"><path d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z"/><path d="M64 116.8l36.378-10.086 8.559-95.878H64z" fill="#F16529"/><path d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692 3.382 37.927H64zm0 35.743l-.061.017-15.327-4.14-.979-10.975H33.816l1.928 21.609 28.193 7.826.063-.017z" fill="#EBEBEB"/><path d="M63.952 52.455v13.763h16.947l-1.597 17.849-15.35 4.143v14.319l28.215-7.82.207-2.325 3.234-36.233.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092.628-6.978.329-3.692z" fill="#fff"/></svg>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="tech-item fade-in stagger-2">
+                        <svg viewBox="0 0 128 128" fill="#1572B6"><path d="M19.67 26l8.459 95.066L63.543 128l35.7-6.974L107.809 26H19.67zm69.21 24.078l-.727 8.16-.182 2.039H51.157l1.415 15.875h34.36l-.37 4.14-3.727 41.69-.263 2.953-18.627 5.168h-.044l-18.71-5.168-1.278-14.316h15.543l.65 7.288 3.794 1.028 3.837-1.028.396-9.49H47.476l-3.508-39.26-.235-2.63h39.948z"/></svg>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="tech-item fade-in stagger-3">
+                        <svg viewBox="0 0 128 128" fill="#F7DF1E"><path d="M2 1v125h125V1H2zm66.119 106.513c0 10.494-6.152 15.289-15.097 15.289-8.096 0-12.764-4.163-15.168-9.212l8.241-4.98c1.597 2.829 3.044 5.222 6.526 5.222 3.333 0 5.439-1.306 5.439-6.383V62.27h10.059v45.242zm23.889 15.289c-9.418 0-15.509-4.504-18.479-10.395l8.241-4.778c2.16 3.522 4.982 6.128 9.963 6.128 4.181 0 6.863-2.089 6.863-4.982 0-3.464-2.75-4.69-7.377-6.717l-2.531-1.087c-7.302-3.112-12.151-7.017-12.151-15.27 0-7.6 5.794-13.384 14.846-13.384 6.444 0 11.075 2.243 14.413 8.117l-7.9 5.07c-1.741-3.112-3.621-4.339-6.513-4.339-2.966 0-4.845 1.885-4.845 4.339 0 3.039 1.879 4.267 6.225 6.152l2.531 1.087c8.601 3.689 13.453 7.457 13.453 15.917C102.443 118.982 95.963 122.802 92.008 122.802z"/></svg>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="tech-item fade-in stagger-4">
+                        <svg viewBox="0 0 128 128"><path fill="#3776AB" d="M49.33 62h29.159C86.606 62 93 55.132 93 46.981V19.183c0-7.912-6.632-13.856-14.555-15.176-5.014-.835-10.195-1.215-15.187-1.191-4.99.023-9.612.448-13.805 1.191C37.098 6.188 35 10.758 35 19.183V30h29v4H23.776c-8.484 0-15.914 5.108-18.237 14.811-2.681 11.12-2.8 18.062 0 29.674C7.953 86.141 13.017 92 21.502 92H32V77.969c0-9.642 8.327-18.145 18.33-18.145h29.334v-1.085zm-16.33-41.7c-3.036 0-5.5-2.511-5.5-5.6 0-3.101 2.464-5.6 5.5-5.6s5.5 2.499 5.5 5.6c0 3.089-2.464 5.6-5.5 5.6z"/><path fill="#FFD845" d="M91.682 28H81v14.156c0 8.87-7.096 17.844-18.33 17.844H33.337C25.423 60 19 66.844 19 74.831v27.798c0 7.912 6.882 12.564 14.555 14.859 9.19 2.748 17.996 3.244 29.112 0C69.422 115.423 75 111.082 75 102.629V92H46v-4h43.676c8.484 0 11.647-5.858 14.555-14.648 2.997-9.065 2.87-17.752 0-29.51C101.632 34.37 98.166 28 91.682 28zM78.5 105.7c3.036 0 5.5 2.499 5.5 5.6s-2.464 5.6-5.5 5.6-5.5-2.499-5.5-5.6 2.464-5.6 5.5-5.6z"/></svg>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item fade-in stagger-5">
+                        <svg viewBox="0 0 128 128"><path fill="#fff" d="M64.004 25.602c-17.067 0-27.73 8.534-32 25.602 6.398-8.534 13.867-11.73 22.398-9.598 4.871 1.214 8.352 4.746 12.207 8.66C72.883 56.648 80.004 64 96.004 64c17.066 0 27.73-8.534 32-25.602-6.399 8.534-13.867 11.73-22.399 9.598-4.87-1.215-8.347-4.746-12.207-8.66-6.27-6.383-13.39-13.734-29.394-13.734zM32.004 64c-17.066 0-27.73 8.534-32 25.602C6.402 81.068 13.87 77.872 22.402 80c4.871 1.215 8.352 4.746 12.207 8.66 6.274 6.383 13.395 13.734 29.395 13.734 17.066 0 27.73-8.534 32-25.602-6.399 8.534-13.867 11.73-22.399 9.598-4.87-1.215-8.347-4.746-12.207-8.66C55.124 71.348 48.004 64 32.004 64z"/></svg>
+                        <span>Flask</span>
+                    </div>
+                    <div class="tech-item fade-in stagger-6">
+                        <svg viewBox="0 0 128 128"><path fill="#336791" d="M93.809 92.112c.785-6.533.55-7.492 5.416-6.433l1.235.108c3.742.17 8.637-.602 11.513-1.938 6.05-2.822 9.631-7.541 3.685-6.305-13.527 2.811-14.558-.398-14.558-.398C115.296 55.027 120.846 27.558 108.754 18.59c-8.73-6.482-13.977-5.197-19.013-5.197l-.028.01c-5.204-.235-9.118.54-12.37 2.073 0 0-37.556-15.48-71.592 5.847C-4.68 29.884 1.103 56.685 3.473 65.622c1.636 6.167 4.757 17.1 11.066 28.246 2.65 4.676 5.445 8.043 10.04 8.601 2.479.302 5.895-.75 8.06-3.03l.18.36c2.46 1.88 4.78 3.118 8.93 2.803 2.08-.158 4.17-.89 5.63-2.172.08.43.12.842.12 1.244 0 0 .665 7.575 4.452 10.16 2.06 1.404 4.665 2.372 7.468 1.262 3.271-1.293 4.91-4.024 5.75-7.192 1.07-4.045 1.61-8.726 1.75-12.406l.033-.8.235-.12c3.07-1.547 5.114-3.4 6.345-5.705.88-1.647 1.185-3.18 1.263-4.663l.182-.47c3.46-8.987 2.32-20.015-.253-29.116-.345-1.224-.705-2.42-1.072-3.561l-.107-.37c-.37-1.25-.755-2.48-1.16-3.645l-.5-1.38c-.275-.733-.56-1.443-.84-2.093-.14-.323-.278-.633-.415-.92-.27-.572-.53-1.076-.792-1.498C65.5 18.605 77.273 22.382 79.66 23.412l.031.006c2.71 1.17 6.213 3.125 6.175 13.75.025 6.28-1.834 12.233-3.44 18.24-.53 1.978-1.074 3.966-1.587 5.98-.175.685-.193 1.467.025 2.198l.006.028c.78 2.63 2.755 4.403 5.445 4.967 1.275.267 2.685.2 4.105-.113 1.59-.353 3.085-.97 3.945-1.3.375-1.006.597-2.104.597-3.295 0-1.228-.222-2.47-.655-3.7l-.01-.033a76.91 76.91 0 0 0-1.067-3.103 232.3 232.3 0 0 1-1.134-3.095l.03-.022c-1.003-3.096-1.37-6.32-.974-9.375.372-2.878 1.334-5.534 2.998-7.606 1.168-1.455 2.647-2.651 4.437-3.468 3.536-1.612 7.34-1.68 10.66-.374 3.56 1.398 6.422 4.157 8.236 7.682 1.66 3.226 2.496 7.07 2.496 11.053 0 5.88-1.716 12.218-5.276 18.083-1.126 1.856-2.396 3.543-3.782 5.043l-.176.188-.04.042c.186.128.395.244.628.344l.044.02zm4.33-34.375c-1.63-.016-2.928.426-3.852 1.283-1.6 1.488-2.134 4.166-1.635 7.38.234 1.5.592 3.056 1.067 4.643l.13.416.039.098c.49-1.82.843-3.57 1.036-5.222.33-2.815.192-5.433-.784-8.598zm-8.326 75.13c-2.136 0-3.852-1.23-3.852-2.75 0-1.52 1.716-2.752 3.852-2.752 2.135 0 3.852 1.232 3.852 2.753.001 1.519-1.716 2.75-3.851 2.75z"/></svg>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="tech-item fade-in stagger-7">
+                        <svg viewBox="0 0 128 128"><path fill="#F34F29" d="M124.737 58.378L69.621 3.264c-3.172-3.174-8.32-3.174-11.497 0L46.68 14.71l14.518 14.518c3.375-1.139 7.243-.375 9.932 2.314 2.703 2.706 3.461 6.607 2.294 9.993l13.992 13.993c3.385-1.167 7.292-.413 9.994 2.295 3.78 3.777 3.78 9.9 0 13.679a9.673 9.673 0 01-13.683 0 9.677 9.677 0 01-2.105-10.521L68.574 47.933l-.002 34.341a9.708 9.708 0 012.559 1.828c3.778 3.777 3.778 9.898 0 13.683-3.779 3.777-9.904 3.777-13.679 0-3.778-3.784-3.778-9.905 0-13.683a9.65 9.65 0 013.167-2.11V47.333a9.581 9.581 0 01-3.167-2.111c-2.862-2.86-3.551-7.06-2.083-10.576L41.056 20.333 3.264 58.123a8.133 8.133 0 000 11.5l55.117 55.114c3.174 3.174 8.32 3.174 11.499 0l54.858-54.858a8.135 8.135 0 00-.001-11.501z"/></svg>
+                        <span>Git</span>
+                    </div>
+                    <div class="tech-item fade-in stagger-1">
+                        <svg viewBox="0 0 128 128"><path fill="#00A67E" d="M64 0C28.654 0 0 28.654 0 64s28.654 64 64 64 64-28.654 64-64S99.346 0 64 0zm27.14 96.14c-1.187 1.96-3.73 2.58-5.69 1.393L55.875 80.36c-1.5-.91-2.418-2.53-2.418-4.28V28.8c0-2.28 1.848-4.13 4.13-4.13 2.28 0 4.13 1.85 4.13 4.13v44.96l31.03 18.69c1.96 1.187 2.58 3.73 1.393 5.69z"/></svg>
+                        <span>OpenAI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Testimonios -->
+        <section id="testimonios" class="testimonials section-padding bg-alt">
+            <div class="container">
+                <h2 class="section-title fade-in">Lo que dicen mis clientes</h2>
+                <p class="section-subtitle fade-in">Resultados reales de personas reales</p>
+                <div class="testimonials-wrapper fade-in">
+                    <div class="testimonial-card" id="testimonial-active">
+                        <p class="testimonial-text" id="testimonial-text">Karen entendió exactamente lo que necesitábamos. Nuestro sistema de reservas aumentó las reservas online un 40% en el primer mes. Muy profesional y siempre disponible.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar" id="testimonial-avatar">CR</div>
+                            <div class="testimonial-info">
+                                <h4 id="testimonial-name">Carlos Ramírez</h4>
+                                <p id="testimonial-role">Dueño de Restaurante — Bogotá</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-dots" id="testimonial-dots">
+                        <button class="active" data-index="0" aria-label="Testimonio 1"></button>
+                        <button data-index="1" aria-label="Testimonio 2"></button>
+                        <button data-index="2" aria-label="Testimonio 3"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Preguntas frecuentes -->
         <section id="faq" class="faq section-padding">
             <div class="container">
                 <h2 class="section-title fade-in">Preguntas Frecuentes</h2>
+                <p class="section-subtitle fade-in">Resuelve tus dudas antes de dar el primer paso</p>
                 <div class="faq-list">
                     <div class="faq-item fade-in">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                             <h3>¿Cuánto tarda un proyecto?</h3>
                             <span class="faq-icon">+</span>
                         </div>
@@ -313,7 +409,7 @@
                         </div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                             <h3>¿Cómo trabajamos si estoy en otro país?</h3>
                             <span class="faq-icon">+</span>
                         </div>
@@ -324,7 +420,7 @@
                         </div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                             <h3>¿Qué tecnologías utilizas?</h3>
                             <span class="faq-icon">+</span>
                         </div>
@@ -335,7 +431,7 @@
                         </div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                             <h3>¿Cuáles son las formas de pago?</h3>
                             <span class="faq-icon">+</span>
                         </div>
@@ -349,12 +445,12 @@
             </div>
         </section>
 
-        <!-- 8. Contacto -->
+        <!-- 10. Contacto -->
         <section id="contacto" class="contact section-padding bg-alt">
             <div class="container contact-container">
                 <div class="contact-info fade-in">
                     <h2 class="section-title text-left">Hablemos de tu proyecto</h2>
-                    <p>Si tienes un problema en tu negocio que crees que se puede resolver con tecnología, escríbeme.
+                    <p style="margin-top: 2rem;">Si tienes un problema en tu negocio que crees que se puede resolver con tecnología, escríbeme.
                         Sin compromisos.</p>
 
                     <div class="contact-details">
@@ -369,62 +465,70 @@
                     </div>
 
                     <a href="https://wa.me/573006707655?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo"
-                        target="_blank" class="btn btn-whatsapp">
+                        target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
                         <span class="icon">📱</span> Escríbeme por WhatsApp
                     </a>
                 </div>
 
                 <div class="contact-form-wrapper fade-in">
-                    <form id="contactForm" class="contact-form">
+                    <form id="contactForm" class="contact-form" novalidate>
                         <div class="form-group">
-                            <label for="name">Tu Nombre</label>
-                            <input type="text" id="name" name="name" placeholder="Ej. Juan Pérez" required>
+                            <label for="name">Tu Nombre <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Ej. Juan Pérez" required autocomplete="name">
+                            <span class="error-message"></span>
                         </div>
                         <div class="form-group">
-                            <label for="email">Tu Email</label>
-                            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                            <label for="email">Tu Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required autocomplete="email">
+                            <span class="error-message"></span>
                         </div>
                         <div class="form-group">
-                            <label for="project-type">Tipo de Proyecto</label>
+                            <label for="project-type">Tipo de Proyecto <span class="required">*</span></label>
                             <select id="project-type" name="project-type" required>
                                 <option value="" disabled selected>Selecciona una opción...</option>
                                 <option value="web">Desarrollo Web (Landing, Web corporativa)</option>
+                                <option value="app">Aplicación Móvil / PWA</option>
                                 <option value="automation">Automatización (Scripts, Integraciones)</option>
                                 <option value="ai">Proyecto con IA (Chatbots, Análisis)</option>
                                 <option value="other">Otro / No estoy seguro</option>
                             </select>
+                            <span class="error-message"></span>
                         </div>
                         <div class="form-group">
-                            <label for="message">Cuéntame el problema o tu necesidad</label>
+                            <label for="message">Cuéntame el problema o tu necesidad <span class="required">*</span></label>
                             <textarea id="message" name="message" rows="5"
                                 placeholder="Actualmente dedico muchas horas a..." required></textarea>
+                            <span class="error-message"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary submit-btn">Enviar Mensaje</button>
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <span class="btn-text">Enviar Mensaje 🚀</span>
+                            <span class="btn-loader"></span>
+                        </button>
                     </form>
-                    <div id="formStatus" class="form-status"></div>
+                    <div id="formStatus" class="form-status" role="alert" aria-live="polite"></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 9. Footer -->
-    <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
         <div class="container footer-content">
-            <div class="footer-logo">Dev</div>
+            <div class="footer-logo">K<span class="logo-accent">M</span></div>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/karen-m%C3%A9ndez-8482783b7" aria-label="LinkedIn">LinkedIn</a>
-                <a href="https://github.com/karen11m" target="_blank" aria-label="GitHub">GitHub</a>
-                <a href="https://www.instagram.com/mend_ezk0ren/" aria-label="Instagram">Instagram</a>
+                <a href="https://www.linkedin.com/in/karen-m%C3%A9ndez-8482783b7" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://github.com/karen11m" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+                <a href="https://www.instagram.com/mend_ezk0ren/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span id="currentYear"></span> Dev. Todos los derechos reservados.</p>
+            <p>&copy; <span id="currentYear"></span> Karen Méndez. Hecho con 💜 desde Bogotá, Colombia.</p>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/573006707655?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo"
-        class="float-whatsapp" target="_blank" aria-label="WhatsApp">
+        class="float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path
@@ -432,6 +536,9 @@
             </path>
         </svg>
     </a>
+
+    <!-- Scroll to Top -->
+    <a href="#inicio" class="scroll-top" id="scrollTopBtn" aria-label="Volver arriba">↑</a>
 </body>
 
 </html>
