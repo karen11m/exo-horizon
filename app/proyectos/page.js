@@ -1,8 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 import Marquee from "@/components/Marquee";
-import ProjectsCarousel from "@/components/ProjectsCarousel";
-import Projects from "@/components/Projects";
-import SectionHeading from "@/components/SectionHeading";
+import ProjectsShowcase from "@/components/ProjectsShowcase";
 import CtaStrip from "@/components/CtaStrip";
 import { loadGitHubRepos } from "@/lib/github";
 import { featuredProjects, conceptProjects } from "@/lib/data";
@@ -41,27 +39,7 @@ export default async function ProyectosPage() {
 
       <section className="py-16 md:py-24">
         <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
-          <div className="mb-10">
-            <SectionHeading
-              index="03.1"
-              eyebrow="Explora"
-              title="Conceptos del estudio"
-              subtitle="Ideas en desarrollo dentro de LambNex. Arrastra el carrusel o usa las flechas."
-            />
-          </div>
-          <ProjectsCarousel projects={projects} />
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
-          <SectionHeading
-            index="03.2"
-            eyebrow="Portafolio"
-            title="Todos los proyectos"
-            subtitle="Featured, conceptos y repositorios públicos, contados en formato caso-problema-solución."
-          />
-          <Projects projects={projects} />
+          <ProjectsShowcase projects={projects} />
         </div>
       </section>
 

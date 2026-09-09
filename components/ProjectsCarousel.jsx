@@ -1,113 +1,81 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const GAP = 16;
+const INTERVAL = 6000;
 
-export default function ProjectsCarousel({ projects = [] }) {
-  const trackRef = useRef(null);
-  const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: 0 });
-  const [index, setIndex] = useState(0);
-  const [maxIndex, setMaxIndex] = useState(0);
+export default function ProjectsCarousel({ projects = [], onSelectTag }) {
+  const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const total = projects.length;
 
-  const step = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return 340;
-    const card = track.querySelector("[data-card]");
-    if (!card) return 340;
-    return card.getBoundingClientRect().width + GAP;
-  }, []);
-
-  const updateIndex = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const w = step();
-    const total = Math.max(0, Math.round((track.scrollWidth - track.clientWidth) / w));
-    const i = Math.min(Math.round(track.scrollLeft / w), total);
-    setIndex(i);
-    setMaxIndex(total);
-  }, [step]);
-
-  useEffect(() => {
-    updateIndex();
-    const track = trackRef.current;
-    if (!track) return;
-    track.addEventListener("scroll", updateIndex, { passive: true });
-    window.addEventListener("resize", updateIndex);
-    return () => {
-      track.removeEventListener("scroll", updateIndex);
-      window.removeEventListener("resize", updateIndex);
-    };
-  }, [updateIndex]);
-
-  const scrollToCard = useCallback(
+  const goTo = useCallback(
     (i) => {
-      const track = trackRef.current;
-      if (!track) return;
-      track.scrollTo({ left: i * step(), behavior: "smooth" });
+      setCurrent(((i % total) + total) % total);
+      setExpanded(false);
     },
-    [step]
-  );
-
-  const advance = useCallback(
-    (dir) => {
-      if (maxIndex === 0) return;
-      let target;
-      if (dir > 0) target = index >= maxIndex ? 0 : index + 1;
-      else target = index <= 0 ? maxIndex : index - 1;
-      scrollToCard(target);
-    },
-    [index, maxIndex, scrollToCard]
+    [total]
   );
 
   useEffect(() => {
-    if (paused || maxIndex === 0) return;
-    const id = setInterval(() => advance(1), 4500);
+    if (paused || total <= 1) return;
+    const id = setInterval(() => {
+      setCurrent((c) => (c + 1) % total);
+      setExpanded(false);
+    }, INTERVAL);
     return () => clearInterval(id);
-  }, [paused, maxIndex, advance]);
+  }, [paused, total]);
 
-  const onPointerDown = (e) => {
-    const track = trackRef.current;
-    if (!track) return;
-    drag.current = { active: true, startX: e.clientX, startScroll: track.scrollLeft, moved: 0 };
-  };
-  const onPointerMove = (e) => {
-    if (!drag.current.active) return;
-    const dx = e.clientX - drag.current.startX;
-    drag.current.moved = Math.max(drag.current.moved, Math.abs(dx));
-    trackRef.current.scrollLeft = drag.current.startScroll - dx;
-  };
-  const endDrag = () => {
-    drag.current.active = false;
-  };
+  if (total === 0) return null;
+
+  const project = projects[current];
+  const monogram =
+    (project.title || "LN")
+      .split(/[\s\u2013-]+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((w) => w[0].toUpperCase())
+      .join("") || "LN";
+
+  const next = () => goTo(current + 1);
+  const prev = () => goTo(current - 1);
 
   return (
     <div
-      className="select-none"
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
-      onPointerLeave={endDrag}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-          ✦ Carrusel — arrastra para explorar
+      {/* Controles superiores */}
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
+        <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
+          <span
+            className={`h-2 w-2 rounded-full ${paused ? "bg-muted" : "animate-pulse bg-primary"}`}
+            aria-hidden="true"
+          />
+          <span className="text-primary">Auto</span>
+          <span className="text-muted">{paused ? "· en pausa" : "· rotación 6s"}</span>
         </p>
         <div className="flex items-center gap-5">
           <p className="font-mono text-xs text-muted">
-            {String(index + 1).padStart(2, "0")}
+            {String(current + 1).padStart(2, "0")}
             <span className="text-primary"> / </span>
-            {String(maxIndex + 1).padStart(2, "0")}
+            {String(total).padStart(2, "0")}
           </p>
           <div className="flex gap-2">
             <button
               type="button"
+              aria-label="Detener o reanudar"
+              className="flex h-11 items-center gap-2 border border-line-strong px-4 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:border-primary hover:text-primary"
+              onClick={() => setPaused((p) => !p)}
+            >
+              {paused ? "▶" : "❚❚"}
+            </button>
+            <button
+              type="button"
               aria-label="Anterior"
               className="flex h-11 w-11 items-center justify-center border border-line-strong text-ink transition-colors hover:border-primary hover:text-primary"
-              onClick={() => advance(-1)}
+              onClick={prev}
             >
               ←
             </button>
@@ -115,7 +83,7 @@ export default function ProjectsCarousel({ projects = [] }) {
               type="button"
               aria-label="Siguiente"
               className="flex h-11 w-11 items-center justify-center border border-line-strong text-ink transition-colors hover:border-primary hover:text-primary"
-              onClick={() => advance(1)}
+              onClick={next}
             >
               →
             </button>
@@ -123,63 +91,98 @@ export default function ProjectsCarousel({ projects = [] }) {
         </div>
       </div>
 
-      <div
-        ref={trackRef}
-        className="carousel-mask no-scrollbar -mx-5 flex gap-4 overflow-x-auto scroll-smooth px-5 pb-4 snap-x snap-mandatory md:-mx-8 md:px-8"
-        style={{ cursor: "grab" }}
-        onDragStart={(e) => e.preventDefault()}
-      >
-        {projects.map((project, i) => (
-          <article
-            key={`${project.title}-${i}`}
-            data-card
-            className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-line bg-surface/50 p-6 transition-colors hover:border-primary/50 sm:w-[360px]"
-          >
+      {/* Ventana del slide */}
+      <div className="carousel-mask -mx-5 px-5 md:-mx-8 md:px-8" aria-live="polite">
+        <div className="relative overflow-hidden border border-line bg-surface/50">
+          <div className="bg-noise absolute inset-0 opacity-[0.05]" aria-hidden="true" />
+
+          <div key={current} className="animate-slide-in relative grid gap-8 p-7 md:p-12 lg:grid-cols-[auto_1fr]">
             <span
-              className="pointer-events-none absolute -right-4 -top-7 text-[8rem] leading-none opacity-[0.07] transition-opacity group-hover:opacity-[0.12]"
+              className="pointer-events-none absolute -right-6 -top-10 select-none font-display text-[11rem] leading-none text-line-strong md:text-[16rem]"
               aria-hidden="true"
             >
-              {project.emoji ?? "L/N"}
+              {monogram}
             </span>
-            <div className="flex items-center justify-between gap-3">
-              <span className="font-mono text-xs tracking-[0.25em] text-primary">
-                P.{String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="border border-primary/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
-                {project.tag}
-              </span>
+
+            <div className="relative flex flex-col items-start justify-between gap-8 lg:items-center lg:flex-row lg:gap-0">
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center border border-primary font-display text-3xl font-semibold text-primary md:h-32 md:w-32 md:text-4xl">
+                {monogram}
+              </div>
+              <div className="flex h-full items-stretch gap-3 lg:flex-col lg:border-l lg:border-line lg:pl-6">
+                <div className="flex flex-col justify-center gap-1 border-l border-line pl-6 lg:pl-0 lg:border-l-0">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
+                    Concepto {String(current + 1).padStart(2, "0")}
+                  </span>
+                  <span className="border border-primary/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                    {project.tag}
+                  </span>
+                </div>
+              </div>
             </div>
-            <span className="mt-8 text-5xl" aria-hidden="true">
-              {project.emoji ?? "L/N"}
-            </span>
-            <h3 className="mt-4 font-display text-2xl font-semibold leading-tight tracking-tight transition-colors group-hover:text-primary">
-              {project.title}
-            </h3>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
-              {project.problem}
-            </p>
-            <p className="mt-5 border-l-2 border-primary pl-3 font-mono text-xs leading-relaxed text-muted">
-              <span className="uppercase tracking-[0.2em] text-primary">Solución: </span>
-              {project.solution}
-            </p>
-            <a
-              href={project.link}
-              target={project.link.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex w-fit items-center gap-2 border border-line-strong px-5 py-2.5 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:border-primary hover:text-primary"
-            >
-              Ver caso
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </a>
-          </article>
-        ))}
+
+            <div className="relative">
+              <h3 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+                {project.title}
+              </h3>
+              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted md:text-lg">
+                <span className="mr-2 font-mono text-[11px] uppercase tracking-[0.2em] text-secondary">
+                  Problema
+                </span>
+                {project.problem}
+              </p>
+              <div
+                className="grid transition-all duration-500"
+                style={{ gridTemplateRows: expanded ? "1fr" : "0fr" }}
+              >
+                <div className="overflow-hidden">
+                  <p className="mt-4 max-w-2xl border-l-2 border-primary pl-4 text-sm leading-relaxed text-muted md:text-base">
+                    <span className="mr-2 font-mono text-[11px] uppercase tracking-[0.2em] text-primary">
+                      Solución
+                    </span>
+                    {project.solution}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => setExpanded((e) => !e)}
+                  className="group inline-flex items-center gap-3 bg-primary px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-[0.15em] text-bg transition-colors hover:bg-ink"
+                >
+                  {expanded ? "Ocultar solución" : "Ver solución"}
+                  <span className="transition-transform group-hover:translate-y-0.5">
+                    {expanded ? "↑" : "↓"}
+                  </span>
+                </button>
+                {onSelectTag && (
+                  <button
+                    type="button"
+                    onClick={() => onSelectTag(project.tag)}
+                    className="border border-line-strong px-7 py-3.5 font-mono text-sm uppercase tracking-[0.15em] text-ink transition-colors hover:border-primary hover:text-primary"
+                  >
+                    Ver «{project.tag}»
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-4 h-px w-full bg-line" aria-hidden="true">
-        <div
-          className="h-px bg-primary transition-all duration-300"
-          style={{ width: maxIndex > 0 ? `${(index / maxIndex) * 100}%` : "0%" }}
-        />
+      {/* Progreso */}
+      <div className="mt-4 flex items-center gap-2">
+        {projects.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Ir a caso ${i + 1}`}
+            onClick={() => goTo(i)}
+            className={`h-1.5 flex-1 transition-all duration-300 ${
+              i === current ? "bg-primary" : "bg-line hover:bg-line-strong"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
