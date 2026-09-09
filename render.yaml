@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: exo-horizon
+    runtime: node
+    plan: free
+    repo: https://github.com/karen11m/exo-horizon
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: SUPABASE_URL
+        value: https://yacevykyrygfjlqalwfa.supabase.co
+      - key: SUPABASE_KEY
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_SECRET
+        sync: false
+      - key: EMAIL_SENDER
+        value: karenmendez.dev@gmail.com
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_RECIPIENT
+        value: karenmendez.dev@gmail.com
+      - key: EMAIL_SMTP_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_SMTP_PORT
+        value: "465"

@@ -72,11 +72,25 @@ Activa **Row Level Security** con una política que permita `INSERT` anónimo y
 
 ## Despliegue en Render (plan gratuito)
 
-1. Crea un **Web Service** conectado a este repositorio.
-2. Configura el build:
-   - Build Command: `npm run build`
+El repositorio incluye un blueprint `render.yaml` que versiona toda la
+configuración (runtime Node, build, start, variables y plan free).
+
+**Opción A — Blueprint (recomendado para servicios nuevos):**
+1. En Render: **New + → Blueprint** → conecta este repositorio.
+2. Render crea el servicio automáticamente con `render.yaml`.
+3. Solo completa los valores que se piden (las marcadas con `sync: false`).
+
+**Opción B — Corregir el servicio existente (para mantener la URL actual):**
+1. Ve a **Settings** del servicio.
+2. En **Build & Deploy**, usa exactamente:
+   - Build Command: `npm install && npm run build`
    - Start Command: `npm start`
-3. Agrega todas las variables de entorno de la tabla de arriba.
+3. Asegúrate de que el **Runtime** sea **Node** (no Python).
+4. Agrega todas las variables de entorno de la tabla de arriba.
+5. **Manual Deploy → Deploy latest commit**.
+
+> ⚠️ Importante: si defines un Build Command a mano, Render **no ejecuta
+> `npm install` por ti**. Debe ir incluido antes del build (`npm install && npm run build`).
 
 ## Scripts
 
