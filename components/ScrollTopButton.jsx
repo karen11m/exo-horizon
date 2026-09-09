@@ -12,14 +12,15 @@ export default function ScrollTopButton() {
   }, []);
 
   return (
-    <a
-      href="#inicio"
+    <button
+      type="button"
       aria-label="Volver arriba"
-      className={`glass fixed bottom-24 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full text-lg text-muted transition-all duration-300 hover:text-primary md:right-7 ${
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className={`fixed bottom-24 right-5 z-40 flex h-11 w-11 items-center justify-center border border-line-strong bg-bg/80 text-lg text-muted backdrop-blur transition-all duration-300 hover:border-primary hover:text-primary md:right-7 ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >
       ↑
-    </a>
+    </button>
   );
 }

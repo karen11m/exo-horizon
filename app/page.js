@@ -1,12 +1,8 @@
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import Projects from "@/components/Projects";
-import About from "@/components/About";
-import TechStack from "@/components/TechStack";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
+import Marquee from "@/components/Marquee";
+import IndexMenu from "@/components/IndexMenu";
+import FeaturedWorks from "@/components/FeaturedWorks";
+import CtaStrip from "@/components/CtaStrip";
 import { loadGitHubRepos } from "@/lib/github";
 import { featuredProjects } from "@/lib/data";
 
@@ -17,14 +13,18 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <Services />
-      <Process />
-      <Projects projects={projects} />
-      <About />
-      <TechStack />
-      <Testimonials />
-      <FAQ />
-      <Contact />
+      <Marquee
+        items={[
+          "Desarrollo web",
+          "Aplicaciones",
+          "Automatización",
+          "Inteligencia artificial",
+          "Consultoría gratuita",
+        ]}
+      />
+      <IndexMenu />
+      <FeaturedWorks projects={projects} />
+      <CtaStrip />
     </>
   );
 }

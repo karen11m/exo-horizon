@@ -1,18 +1,18 @@
 import Reveal from "./Reveal";
 
-export default function SectionHeading({ eyebrow, title, subtitle }) {
+export default function SectionHeading({ index, eyebrow, title, subtitle }) {
   return (
-    <Reveal className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
-      {eyebrow && (
-        <span className="mb-3 inline-block rounded-full border border-line bg-card px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-          {eyebrow}
-        </span>
-      )}
-      <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-5xl">
+    <Reveal className="mb-12 max-w-3xl md:mb-16">
+      <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-[0.25em] text-primary">
+        <span>✦ {index}</span>
+        <span className="h-px w-12 bg-line-strong" aria-hidden="true" />
+        <span className="text-muted">{eyebrow}</span>
+      </div>
+      <h2 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl md:text-6xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted md:text-lg">
           {subtitle}
         </p>
       )}

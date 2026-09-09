@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { navLinks } from "@/lib/data";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { navLinks, socialLinks } from "@/lib/data";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#inicio");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -16,108 +18,134 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-    const ids = ["#inicio", ...navLinks.map((l) => l.href)];
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
-        });
-      },
-      { threshold: 0.35, rootMargin: "-30% 0px -55% 0px" }
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
-  }, []);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
-  const close = () => setOpen(false);
+  const isActive = (href) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open
-          ? "border-b border-line bg-bg/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-[72px] w-full max-w-6xl items-center justify-between px-5 md:px-8">
-        <a
-          href="#inicio"
-          onClick={close}
-          className="font-display text-2xl font-bold tracking-tight"
-          aria-label="Ir al inicio"
-        >
-          K<span className="text-gradient">M</span>
-          <span className="ml-1 text-sm font-medium text-muted">.dev</span>
-        </a>
-
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Principal">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                active === link.href
-                  ? "text-primary"
-                  : "text-muted hover:text-ink"
-              }`}
-            >
-              {link.label}
-              {active === link.href && (
-                <span className="absolute inset-x-3 -bottom-0.5 h-px bg-gradient-to-r from-primary to-secondary" />
-              )}
-            </a>
-          ))}
-          <a
-            href="#contacto"
-            className="ml-3 rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-2.5 text-sm font-semibold text-bg transition-opacity hover:opacity-90"
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          scrolled || open
+            ? "border-b border-line bg-bg/85 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 md:h-[76px] md:px-8">
+          <Link
+            href="/"
+            className="group flex items-center gap-3"
+            aria-label="Ir al inicio"
           >
-            Contacto
-          </a>
-        </nav>
+            <span className="flex h-9 w-9 items-center justify-center border border-primary font-mono text-xs font-bold text-primary transition-colors group-hover:bg-primary group-hover:text-bg">
+              K/M
+            </span>
+            <span className="hidden flex-col leading-none sm:flex">
+              <span className="font-display text-base font-bold tracking-tight">
+                Karen Méndez
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+                Dev / Estudio
+              </span>
+            </span>
+          </Link>
 
-        <button
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-ink md:hidden"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            {open ? (
-              <path d="M6 6l12 12M18 6L6 18" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            )}
-          </svg>
-        </button>
-      </div>
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Principal">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`nav-underline font-mono text-xs uppercase tracking-[0.18em] transition-colors ${
+                  isActive(link.href) ? "is-active text-primary" : "text-muted hover:text-ink"
+                }`}
+              >
+                <span className="mr-1 text-[10px] text-primary/70">{link.index}</span>
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/contacto"
+              className="border border-primary px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-bg"
+            >
+              Hablemos ✦
+            </Link>
+          </nav>
+
+          <button
+            className="flex h-10 w-10 items-center justify-center border border-line-strong text-ink lg:hidden"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              {open ? (
+                <path d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <path d="M4 8h16M4 16h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </header>
 
       {open && (
-        <nav
-          className="border-t border-line bg-bg/95 px-5 pb-6 pt-2 backdrop-blur-xl md:hidden"
-          aria-label="Menú móvil"
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={close}
-              className={`block rounded-lg px-3 py-3 text-base font-medium ${
-                active === link.href ? "text-primary" : "text-muted"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contacto"
-            onClick={close}
-            className="mt-3 block rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-3 text-center font-semibold text-bg"
-          >
-            Contacto
-          </a>
-        </nav>
+        <div className="fixed inset-0 z-40 flex flex-col bg-bg lg:hidden">
+          <div className="flex-1 px-5 pt-28 md:px-8">
+            <p className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-muted">
+              — Índice
+            </p>
+            <nav className="flex flex-col" aria-label="Menú móvil">
+              {navLinks.map((link, i) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="group flex items-baseline gap-4 border-b border-line py-5"
+                >
+                  <span className="font-mono text-xs text-primary">{link.index}</span>
+                  <span
+                    className={`font-display text-4xl font-semibold tracking-tight transition-colors sm:text-5xl ${
+                      isActive(link.href) ? "text-primary" : "text-ink group-hover:text-primary"
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                  <span className="ml-auto text-muted transition-transform group-hover:translate-x-1 group-hover:text-primary">
+                    →
+                  </span>
+                </Link>
+              ))}
+            </nav>
+            <p className="mt-10 font-mono text-xs uppercase tracking-[0.3em] text-muted">
+              — Social
+            </p>
+            <div className="mt-4 flex flex-wrap gap-6">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="font-mono text-xs uppercase tracking-[0.18em] text-muted hover:text-primary"
+                >
+                  {s.label} ↖
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="border-t border-line px-5 py-6 md:px-8">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
+              Bogotá, CO — 2026
+            </p>
+          </div>
+        </div>
       )}
-    </header>
+    </>
   );
 }

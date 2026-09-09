@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { contactInfo, heroStats } from "@/lib/data";
+import { useEffect, useState } from "react";
 
 const phrases = [
   "soluciones digitales",
@@ -11,65 +10,12 @@ const phrases = [
   "proyectos con IA",
 ];
 
-function useCountUp(target, start, duration = 1500) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let frame;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        io.disconnect();
-        const t0 = performance.now();
-        const tick = (now) => {
-          const p = Math.min((now - t0) / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(start + (target - start) * eased);
-          if (p < 1) frame = requestAnimationFrame(tick);
-        };
-        frame = requestAnimationFrame(tick);
-      },
-      { threshold: 0.5 }
-    );
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      cancelAnimationFrame(frame);
-    };
-  }, [target, start, duration]);
-  return ref;
-}
-
-function Stat({ value, label }) {
-  const match = /^(\d+)(.*)$/.exec(value);
-  const isNumeric = Boolean(match);
-  const target = match ? parseInt(match[1], 10) : 0;
-  const suffix = match ? match[2] : "";
-  const ref = useCountUp(target, 0, 1500);
-
-  return (
-    <div className="flex flex-col items-center gap-1 px-4">
-      <span className="font-display text-2xl font-bold text-ink sm:text-4xl">
-        {isNumeric ? (
-          <span ref={ref}>0{suffix}</span>
-        ) : (
-          value
-        )}
-      </span>
-      <span className="text-xs uppercase tracking-widest text-muted sm:text-sm">
-        {label}
-      </span>
-    </div>
-  );
-}
-
 export default function Hero() {
   const [text, setText] = useState("");
-  const [badgeVisible, setBadgeVisible] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setBadgeVisible(true), 300);
+    const t = setTimeout(() => setReady(true), 200);
     return () => clearTimeout(t);
   }, []);
 
@@ -84,11 +30,11 @@ export default function Hero() {
       if (isDeleting) {
         charIndex--;
         setText(current.slice(0, charIndex));
-        timer = setTimeout(tick, 28);
+        timer = setTimeout(tick, 24);
       } else {
         charIndex++;
         setText(current.slice(0, charIndex));
-        timer = setTimeout(tick, 62);
+        timer = setTimeout(tick, 58);
       }
       if (!isDeleting && charIndex === current.length) {
         clearTimeout(timer);
@@ -107,7 +53,7 @@ export default function Hero() {
       }
     };
 
-    const start = setTimeout(tick, 600);
+    const start = setTimeout(tick, 500);
     return () => {
       clearTimeout(start);
       clearTimeout(timer);
@@ -115,89 +61,100 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
-      id="inicio"
-      className="relative flex min-h-screen items-center overflow-hidden pt-24 pb-16 md:pt-28"
-    >
-      <div className="bg-grid absolute inset-0" aria-hidden="true" />
-      <div className="orb left-[-120px] top-[10%] h-72 w-72 bg-cyan-500/30" aria-hidden="true" />
-      <div className="orb right-[-100px] bottom-[5%] h-80 w-80 bg-violet-500/30" aria-hidden="true" />
+    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-28 pb-16 md:pt-32">
+      <div className="bg-blueprint absolute inset-0" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute -right-40 top-1/4 h-[480px] w-[480px] rounded-full bg-primary/5 blur-3xl"
+        aria-hidden="true"
+      />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-14 px-5 md:px-8 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 px-5 md:px-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <span
-            className={`inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-1.5 text-sm font-medium text-muted transition-all duration-700 ${
-              badgeVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+          <div
+            className={`flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.25em] transition-all duration-700 ${
+              ready ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
             }`}
           >
-            <span className="pulse-dot h-2 w-2 rounded-full bg-emerald-400" />
-            Disponible para proyectos
-          </span>
+            <span className="inline-flex items-center gap-2 text-muted">
+              <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-primary" />
+              Disponible para proyectos
+            </span>
+            <span className="hidden text-muted/60 sm:inline">✦</span>
+            <span className="text-muted/70">Bogotá, CO — GMT-5</span>
+          </div>
 
-          <h1 className="mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
-            Transformo ideas en{" "}
-            <span className="text-gradient">{text}</span>
-            <span className="ml-0.5 inline-block w-[3px] animate-pulse bg-primary align-baseline" aria-hidden="true" />
+          <h1 className="mt-8 font-display text-[13vw] font-semibold leading-[1.02] tracking-tight sm:text-7xl md:text-8xl lg:text-[6.5rem]">
+            Transformo
+            <br />
+            problemas en{" "}
+            <span className="italic text-gradient">soluciones</span>
+            <br />
+            <span className="font-normal text-primary">{text}</span>
+            <span className="ml-1 inline-block h-[0.9em] w-[0.05em] translate-y-2 animate-pulse bg-primary align-baseline" aria-hidden="true" />
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            Soy desarrolladora full-stack especializada en desarrollo web,
-            aplicaciones, automatización de procesos e Inteligencia Artificial.
-            Creo herramientas que generan resultados reales para tu negocio.
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+            Soy Karen Méndez, desarrolladora full-stack. Creo herramientas
+            funcionales — no solo páginas bonitas — para que tu negocio venda
+            más y trabaje en automático.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
-              href="#contacto"
-              className="rounded-full bg-gradient-to-r from-primary to-secondary px-7 py-3.5 font-semibold text-bg shadow-lg shadow-primary/20 transition-transform hover:scale-[1.03]"
+              href="/contacto"
+              className="group inline-flex items-center gap-3 bg-primary px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.15em] text-bg transition-colors hover:bg-ink"
             >
               Agenda una consultoría
+              <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
             <a
-              href="#proyectos"
-              className="rounded-full border border-line-strong bg-card px-7 py-3.5 font-semibold text-ink transition-colors hover:border-primary hover:text-primary"
+              href="/proyectos"
+              className="inline-flex items-center gap-3 border border-line-strong px-8 py-4 font-mono text-sm uppercase tracking-[0.15em] text-ink transition-colors hover:border-primary hover:text-primary"
             >
-              Ver mis proyectos
+              Ver proyectos
             </a>
           </div>
 
-          <div className="mt-12 flex max-w-md items-center gap-2 divide-x divide-line">
-            {heroStats.map((s) => (
-              <Stat key={s.label} value={s.value} label={s.label} />
-            ))}
+          <div className="mt-14 flex max-w-md flex-wrap items-center gap-x-10 gap-y-4 border-t border-line pt-6">
+            <div>
+              <span className="font-display text-3xl font-semibold">20<span className="text-primary">+</span></span>
+              <span className="ml-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Proyectos</span>
+            </div>
+            <div>
+              <span className="font-display text-3xl font-semibold">100<span className="text-primary">%</span></span>
+              <span className="ml-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Remoto</span>
+            </div>
+            <div>
+              <span className="font-display text-3xl font-semibold">24<span className="text-primary">/7</span></span>
+              <span className="ml-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Soporte</span>
+            </div>
           </div>
         </div>
 
-        <div className="hidden justify-center lg:flex">
-          <div className="glass animate-float relative w-[300px] rounded-3xl p-8 text-center">
-            <div className="orb inset-[-40px] m-auto h-40 w-40 bg-gradient-to-br from-cyan-500/40 to-violet-500/40" aria-hidden="true" />
-            <div className="relative">
-              <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary font-display text-3xl font-bold text-bg shadow-2xl shadow-primary/30">
-                KM
-              </div>
-              <h3 className="mt-5 font-display text-xl font-bold">Karen Méndez</h3>
-              <p className="mt-1 text-sm text-muted">Desarrolladora Full-Stack</p>
-              <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-sm font-medium text-emerald-300">
-                <span className="pulse-dot h-2 w-2 rounded-full bg-emerald-400" /> Disponible
-              </p>
-              <div className="mt-6 flex justify-center gap-3">
-                <a
-                  href="https://github.com/karen11m"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-line px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-primary hover:text-primary"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={`https://wa.me/${contactInfo.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-line px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-primary hover:text-primary"
-                >
-                  WhatsApp
-                </a>
-              </div>
+        <div className="relative hidden justify-center lg:flex">
+          <p className="v-label absolute -left-3 top-0 h-full font-mono text-[10px] uppercase tracking-[0.35em] text-muted/70">
+            Full-Stack — Estudio 001
+          </p>
+          <div className="relative">
+            <svg
+              aria-hidden="true"
+              className="animate-spin-slow h-72 w-72 text-primary/80"
+              viewBox="0 0 100 100"
+            >
+              <defs>
+                <path id="hero-circle" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
+              </defs>
+              <text style={{ fontSize: "8.5px", letterSpacing: "2.2px" }} fill="currentColor" fontFamily="var(--font-jetbrains)">
+                <textPath href="#hero-circle">
+                  DESARROLLO WEB • AUTOMATIZACIÓN • IA • “CREO HERRAMIENTAS QUE FUNCIONAN” •
+                </textPath>
+              </text>
+            </svg>
+            <div className="absolute inset-8 flex flex-col items-center justify-center gap-2 border border-line bg-surface/70 backdrop-blur">
+              <span className="font-display text-6xl font-semibold">KM</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
+                Karen Méndez
+              </span>
             </div>
           </div>
         </div>

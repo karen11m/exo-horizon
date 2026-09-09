@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #05050a;
-  --surface: #0b0b14;
-  --card: rgba(255, 255, 255, 0.035);
-  --card-hover: rgba(255, 255, 255, 0.06);
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.16);
-  --primary: #2dd4ff;
-  --secondary: #b18cff;
-  --ink: #eef0f8;
-  --muted: #9aa0b8;
-  --radius: 1rem;
+  --bg: #0a0b09;
+  --surface: #10120e;
+  --card: rgba(240, 244, 230, 0.04);
+  --card-hover: rgba(240, 244, 230, 0.07);
+  --line: rgba(240, 244, 230, 0.12);
+  --line-strong: rgba(240, 244, 230, 0.24);
+  --primary: #c9f73a;
+  --secondary: #ff6b4d;
+  --ink: #eef0e4;
+  --muted: #979c8b;
+  --radius: 0.75rem;
 }
 
 @theme inline {
@@ -25,13 +25,14 @@
   --color-secondary: var(--secondary);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --font-sans: var(--font-outfit);
-  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-space-grotesk);
+  --font-display: var(--font-fraunces);
+  --font-mono: var(--font-jetbrains);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -43,8 +44,8 @@ body {
 }
 
 ::selection {
-  background: rgba(45, 212, 255, 0.35);
-  color: #fff;
+  background: var(--primary);
+  color: var(--bg);
 }
 
 ::-webkit-scrollbar {
@@ -54,18 +55,18 @@ body {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(201, 247, 58, 0.35);
   border-radius: 999px;
-  border: 2px solid var(--bg);
+  border: 3px solid var(--bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(201, 247, 58, 0.55);
 }
 
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 select option {
@@ -73,20 +74,42 @@ select option {
   color: var(--ink);
 }
 
+.font-display {
+  font-feature-settings: "ss01";
+}
+
+/* --- Fondo de ruido --- */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* --- Retícula técnica --- */
+.bg-blueprint {
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, black 30%, transparent 100%);
+  background-color: rgba(201, 247, 58, 0.02);
+}
+
 .text-gradient {
-  background-image: linear-gradient(100deg, var(--primary) 10%, var(--secondary) 90%);
+  background-image: linear-gradient(98deg, var(--primary) 5%, var(--secondary) 95%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.bg-grid {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+/* --- Texto en contorno (outline) --- */
+.stroke-primary {
+  -webkit-text-stroke: 1.5px var(--primary);
+  color: transparent;
+}
+.stroke-faint {
+  -webkit-text-stroke: 1px var(--line-strong);
+  color: transparent;
 }
 
+/* --- Tarjetas --- */
 .glass {
   background: var(--card);
   border: 1px solid var(--line);
@@ -94,50 +117,15 @@ select option {
 }
 
 .card-hover {
-  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
 }
 .card-hover:hover {
-  transform: translateY(-6px);
-  border-color: var(--line-strong);
+  transform: translateY(-5px);
+  border-color: rgba(201, 247, 58, 0.45);
   background: var(--card-hover);
-  box-shadow: 0 18px 50px -20px rgba(45, 212, 255, 0.25);
 }
 
-.orb {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-.animate-float {
-  animation: float 7s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
-  }
-  50% {
-    opacity: 0.7;
-    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0);
-  }
-}
-.pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
+/* --- Marquesina --- */
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -147,17 +135,72 @@ select option {
   }
 }
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 28s linear infinite;
+}
+.animate-marquee-fast {
+  animation: marquee 16s linear infinite;
 }
 
+/* --- Sello giratorio --- */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+/* --- Texto vertical --- */
+.v-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* --- Reveal (mantiene compatibilidad con admin y animaciones) --- */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(26px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(201, 247, 58, 0.55);
+  }
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 6px rgba(201, 247, 58, 0);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* --- Acento subrayado con desplazamiento --- */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-underline:hover::after,
+.nav-underline.is-active::after {
+  transform: scaleX(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -166,8 +209,9 @@ select option {
     transform: none;
     transition: none;
   }
-  .animate-float,
   .animate-marquee,
+  .animate-marquee-fast,
+  .animate-spin-slow,
   .pulse-dot {
     animation: none;
   }

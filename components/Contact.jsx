@@ -67,46 +67,46 @@ export default function Contact() {
   };
 
   const inputClass = (hasError) =>
-    `w-full rounded-xl border bg-card px-4 py-3 text-ink placeholder:text-muted/60 transition-colors focus:outline-none focus:ring-1 ${
+    `w-full border bg-card px-4 py-3.5 font-mono text-sm text-ink placeholder:font-sans placeholder:text-muted/60 transition-colors focus:outline-none focus:ring-1 ${
       hasError
         ? "border-red-400/60 focus:border-red-400 focus:ring-red-400/40"
         : "border-line focus:border-primary focus:ring-primary/40"
     }`;
 
-  return (
-    <section id="contacto" className="relative bg-surface/40 py-20 md:py-28">
-      <div className="orb right-[-120px] top-[10%] h-72 w-72 bg-violet-500/25" aria-hidden="true" />
+  const labelClass = "mb-2 block font-mono text-[11px] uppercase tracking-[0.25em]";
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-5 md:px-8 lg:grid-cols-[0.9fr_1.1fr]">
+  return (
+    <section className="py-20 md:py-28">
+      <div className="mx-auto grid w-full max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <span className="mb-3 inline-block rounded-full border border-line bg-card px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Contacto
-          </span>
-          <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Hablemos de <span className="text-gradient">tu proyecto</span>
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+            ✦ 05 — Contacto
+          </p>
+          <h2 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+            Hablemos de <span className="italic text-gradient">tu proyecto</span>
           </h2>
-          <p className="mt-5 max-w-md leading-relaxed text-muted">
-            Si tienes un problema en tu negocio que crees que se puede resolver con
-            tecnología, escríbeme. Sin compromisos.
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg">
+            Cuéntame el problema que quieres resolver. Te respondo con una
+            propuesta y un plan claro. Sin compromiso.
           </p>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-10 space-y-3 border-t border-line pt-8">
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-card text-primary" aria-hidden="true">
-                ✉️
-              </span>
+              <span className="font-mono text-xs text-primary">→</span>
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="text-muted transition-colors hover:text-primary"
+                className="font-mono text-sm text-muted transition-colors hover:text-primary"
               >
                 {contactInfo.email}
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-card text-primary" aria-hidden="true">
-                📍
-              </span>
-              <span className="text-muted">{contactInfo.location}</span>
+              <span className="font-mono text-xs text-primary">→</span>
+              <span className="font-mono text-sm text-muted">{contactInfo.location}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs text-primary">→</span>
+              <span className="font-mono text-sm text-muted">{contactInfo.timezone}</span>
             </div>
           </div>
 
@@ -114,118 +114,130 @@ export default function Contact() {
             href={`https://wa.me/${contactInfo.whatsapp}?text=${contactInfo.whatsappText}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 px-7 py-3.5 font-semibold text-white shadow-lg shadow-emerald-500/25 transition-transform hover:scale-[1.03]"
+            className="mt-8 inline-flex items-center gap-3 border border-line-strong px-7 py-4 font-mono text-sm uppercase tracking-[0.15em] text-ink transition-colors hover:border-emerald-400 hover:text-emerald-300"
           >
-            📱 Escríbeme por WhatsApp
+            <span aria-hidden="true">✆</span> WhatsApp directo
           </a>
         </Reveal>
 
         <Reveal delay={120}>
           <form
             onSubmit={handleSubmit}
-            className="glass space-y-5 rounded-3xl p-6 md:p-8"
+            className="border border-line bg-surface/50 p-6 md:p-10"
             noValidate
           >
-            <div>
-              <label htmlFor="name" className="mb-2 block text-sm font-medium">
-                Tu nombre <span className="text-primary">*</span>
-              </label>
-              <input
-                id="name"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Ej. Juan Pérez"
-                autoComplete="name"
-                className={inputClass(errors.name)}
-              />
-              {errors.name && (
-                <p className="mt-1 text-xs text-red-400">{errors.name}</p>
-              )}
+            <div className="mb-8 flex items-center justify-between border-b border-line pb-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
+                Nuevo mensaje
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
+                KM / 026
+              </span>
             </div>
 
-            <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium">
-                Tu email <span className="text-primary">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="ejemplo@correo.com"
-                autoComplete="email"
-                className={inputClass(errors.email)}
-              />
-              {errors.email && (
-                <p className="mt-1 text-xs text-red-400">{errors.email}</p>
-              )}
-            </div>
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="name" className={`${labelClass} text-muted`}>
+                  Tu nombre <span className="text-primary">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder="Ej. Juan Pérez"
+                  autoComplete="name"
+                  className={inputClass(errors.name)}
+                />
+                {errors.name && (
+                  <p className="mt-1 font-mono text-xs text-red-400">{errors.name}</p>
+                )}
+              </div>
 
-            <div>
-              <label htmlFor="type" className="mb-2 block text-sm font-medium">
-                Tipo de proyecto <span className="text-primary">*</span>
-              </label>
-              <select
-                id="type"
-                name="type"
-                value={form.type}
-                onChange={handleChange}
-                className={`${inputClass(errors.type)} appearance-none`}
+              <div>
+                <label htmlFor="email" className={`${labelClass} text-muted`}>
+                  Tu email <span className="text-primary">*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="ejemplo@correo.com"
+                  autoComplete="email"
+                  className={inputClass(errors.email)}
+                />
+                {errors.email && (
+                  <p className="mt-1 font-mono text-xs text-red-400">{errors.email}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="type" className={`${labelClass} text-muted`}>
+                  Tipo de proyecto <span className="text-primary">*</span>
+                </label>
+                <select
+                  id="type"
+                  name="type"
+                  value={form.type}
+                  onChange={handleChange}
+                  className={inputClass(errors.type)}
+                >
+                  <option value="" disabled>
+                    Selecciona una opción...
+                  </option>
+                  <option value="web">Desarrollo Web (Landing, web corporativa)</option>
+                  <option value="app">Aplicación Móvil / PWA</option>
+                  <option value="automation">Automatización (Scripts, integraciones)</option>
+                  <option value="ai">Proyecto con IA (Chatbots, análisis)</option>
+                  <option value="other">Otro / No estoy seguro</option>
+                </select>
+                {errors.type && (
+                  <p className="mt-1 font-mono text-xs text-red-400">{errors.type}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="message" className={`${labelClass} text-muted`}>
+                  El problema o tu necesidad <span className="text-primary">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder="Actualmente dedico muchas horas a..."
+                  className={inputClass(errors.message)}
+                />
+                {errors.message && (
+                  <p className="mt-1 font-mono text-xs text-red-400">{errors.message}</p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="group flex w-full items-center justify-center gap-3 bg-primary px-6 py-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-bg transition-colors hover:bg-ink disabled:cursor-not-allowed disabled:opacity-60"
               >
-                <option value="" disabled>
-                  Selecciona una opción...
-                </option>
-                <option value="web">Desarrollo Web (Landing, web corporativa)</option>
-                <option value="app">Aplicación Móvil / PWA</option>
-                <option value="automation">Automatización (Scripts, integraciones)</option>
-                <option value="ai">Proyecto con IA (Chatbots, análisis)</option>
-                <option value="other">Otro / No estoy seguro</option>
-              </select>
-              {errors.type && (
-                <p className="mt-1 text-xs text-red-400">{errors.type}</p>
+                {loading ? "Enviando…" : "Enviar mensaje"}
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </button>
+
+              {status && (
+                <p
+                  role="status"
+                  className={`flex items-center gap-2 px-4 py-3 font-mono text-xs ${
+                    status.ok
+                      ? "border border-emerald-400/30 bg-emerald-400/10 text-emerald-300"
+                      : "border border-red-400/30 bg-red-400/10 text-red-300"
+                  }`}
+                >
+                  {status.ok ? "✓" : "✕"} {status.message}
+                </p>
               )}
             </div>
-
-            <div>
-              <label htmlFor="message" className="mb-2 block text-sm font-medium">
-                Cuéntame el problema o tu necesidad <span className="text-primary">*</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Actualmente dedico muchas horas a..."
-                className={inputClass(errors.message)}
-              />
-              {errors.message && (
-                <p className="mt-1 text-xs text-red-400">{errors.message}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full rounded-full bg-gradient-to-r from-primary to-secondary py-3.5 font-semibold text-bg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {loading ? "Enviando..." : "Enviar mensaje 🚀"}
-            </button>
-
-            {status && (
-              <p
-                role="status"
-                className={`rounded-lg px-4 py-3 text-sm ${
-                  status.ok
-                    ? "border border-emerald-400/30 bg-emerald-400/10 text-emerald-300"
-                    : "border border-red-400/30 bg-red-400/10 text-red-300"
-                }`}
-              >
-                {status.message}
-              </p>
-            )}
           </form>
         </Reveal>
       </div>

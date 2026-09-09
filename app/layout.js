@@ -1,20 +1,29 @@
-import { Outfit, Space_Grotesk } from "next/font/google";
+import { Fraunces, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Particles from "@/components/Particles";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollTopButton from "@/components/ScrollTopButton";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -54,9 +63,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" data-scroll-behavior="smooth" className={`${outfit.variable} ${spaceGrotesk.variable}`}>
+    <html
+      lang="es"
+      data-scroll-behavior="smooth"
+      className={`${fraunces.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="relative min-h-screen overflow-x-clip bg-bg font-sans text-ink antialiased">
-        <Particles />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 bg-noise opacity-[0.07]"
+        />
         <Navbar />
         <main className="relative z-10">{children}</main>
         <Footer />

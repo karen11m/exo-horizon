@@ -3,39 +3,49 @@ import { aboutParagraphs } from "@/lib/data";
 
 export default function About() {
   return (
-    <section id="sobre-mi" className="relative bg-surface/40 py-20 md:py-28">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr]">
-        <Reveal>
-          <div className="relative mx-auto max-w-sm">
-            <div
-              className="absolute -inset-4 rounded-tl-[3rem] rounded-br-[3rem] border border-line"
-              aria-hidden="true"
-            />
-            <div className="glass flex aspect-[4/5] flex-col items-center justify-center gap-3 rounded-tl-[3rem] rounded-br-[3rem] p-8 text-center">
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary font-display text-3xl font-bold text-bg shadow-2xl shadow-primary/30">
-                <span>KM</span>
-              </div>
-              <p className="text-sm text-muted">Ingeniera de Sistemas en formación</p>
-              <p className="font-display text-lg font-bold">Karen Méndez</p>
-            </div>
-          </div>
-        </Reveal>
-
-        <div>
+    <section className="py-20 md:py-28">
+      <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
+        <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
-            <span className="mb-3 inline-block rounded-full border border-line bg-card px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Sobre mí
-            </span>
-            <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Cuéntame tu problema,{" "}
-              <span className="text-gradient">yo construyo la solución</span>
-            </h2>
+            <div className="lg:sticky lg:top-28">
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                ✦ 04 — Sobre mí
+              </p>
+              <h2 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+                Cuéntame tu problema,{" "}
+                <span className="italic text-gradient">yo construyo la solución.</span>
+              </h2>
+
+              <div className="relative mt-12 hidden max-w-sm lg:block">
+                <div className="bg-noise absolute inset-0 opacity-[0.06]" aria-hidden="true" />
+                <div className="relative aspect-[4/5] border border-line bg-surface/60">
+                  <span className="absolute left-4 top-4 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
+                    KM — 001
+                  </span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="stroke-primary font-display text-[9rem] leading-none">
+                      KM
+                    </span>
+                  </div>
+                  <span className="absolute bottom-4 right-4 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
+                    Bogotá · Ingeniera en formación
+                  </span>
+                </div>
+              </div>
+            </div>
           </Reveal>
-          <div className="mt-6 space-y-4">
+
+          <div>
             {aboutParagraphs.map((p, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <p className="leading-relaxed text-muted">
-                  {p.lead ? <strong className="text-ink">{p.text}</strong> : p.text}
+              <Reveal key={i} delay={i * 70}>
+                <p
+                  className={`${
+                    p.lead
+                      ? "font-display text-2xl font-medium leading-snug text-ink md:text-3xl"
+                      : "mt-5 border-l border-line pl-5 text-base leading-relaxed text-muted md:text-lg"
+                  }`}
+                >
+                  {p.text}
                 </p>
               </Reveal>
             ))}
