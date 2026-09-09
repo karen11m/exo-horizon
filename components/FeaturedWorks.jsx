@@ -41,7 +41,12 @@ export default function FeaturedWorks({ projects = [] }) {
                     </span>
                   )}
                 </div>
-                <h3 className="mt-3 font-display text-3xl font-semibold tracking-tight transition-colors group-hover:text-primary md:text-4xl">
+                <h3 className="mt-3 flex items-center gap-3 font-display text-3xl font-semibold tracking-tight transition-colors group-hover:text-primary md:text-4xl">
+                  {project.emoji && (
+                    <span className="text-2xl" aria-hidden="true">
+                      {project.emoji}
+                    </span>
+                  )}
                   {project.title}
                 </h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted md:text-base">

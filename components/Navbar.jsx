@@ -43,14 +43,14 @@ export default function Navbar() {
             aria-label="Ir al inicio"
           >
             <span className="flex h-9 w-9 items-center justify-center border border-primary font-mono text-xs font-bold text-primary transition-colors group-hover:bg-primary group-hover:text-bg">
-              K/M
+              L/N
             </span>
             <span className="hidden flex-col leading-none sm:flex">
               <span className="font-display text-base font-bold tracking-tight">
-                Karen Méndez
+                LambNex
               </span>
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-                Dev / Estudio
+                Estudio digital
               </span>
             </span>
           </Link>
@@ -141,7 +141,7 @@ export default function Navbar() {
           </div>
           <div className="border-t border-line px-5 py-6 md:px-8">
             <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
-              Bogotá, CO — 2026
+              LambNex — Bogotá, CO · 2026
             </p>
           </div>
         </div>

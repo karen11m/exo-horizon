@@ -30,12 +30,13 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   metadataBase: new URL("https://exo-horizon.onrender.com"),
   title: {
-    default: "Karen Méndez | Desarrolladora Full-Stack — Soluciones Digitales y Automatización",
-    template: "%s | Karen Méndez",
+    default: "LambNex | Soluciones Digitales y Automatización — Karen Méndez",
+    template: "%s | LambNex",
   },
   description:
-    "Soy Karen Méndez, desarrolladora full-stack en Bogotá, Colombia. Creo páginas web, apps, automatización de procesos e integración de IA para tu negocio.",
+    "LambNex es el estudio digital de Karen Méndez, desarrolladora full-stack en Bogotá, Colombia. Páginas web, apps, automatización de procesos e integración de IA para tu negocio.",
   keywords: [
+    "LambNex",
     "desarrolladora full-stack",
     "desarrollo web",
     "automatización",
@@ -46,16 +47,16 @@ export const metadata = {
   ],
   authors: [{ name: "Karen Méndez" }],
   openGraph: {
-    title: "Karen Méndez | Desarrolladora Full-Stack",
+    title: "LambNex | Soluciones Digitales y Automatización",
     description:
       "Transformo ideas en soluciones digitales que funcionan. Desarrollo web, apps, automatización e IA.",
     type: "website",
     locale: "es_CO",
-    siteName: "Karen Méndez",
+    siteName: "LambNex",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karen Méndez | Desarrolladora Full-Stack",
+    title: "LambNex | Soluciones Digitales y Automatización",
     description: "Transformo ideas en soluciones digitales que funcionan.",
   },
   robots: { index: true, follow: true },

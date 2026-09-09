@@ -11,12 +11,12 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center border border-primary font-mono text-xs font-bold text-primary">
-                K/M
+                L/N
               </span>
               <div className="leading-none">
-                <p className="font-display text-xl font-semibold">Karen Méndez</p>
+                <p className="font-display text-xl font-semibold">LambNex</p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
-                  Desarrolladora Full-Stack
+                  Estudio digital — Karen Méndez
                 </p>
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function Footer() {
       <div className="border-t border-line">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 md:flex-row md:px-8">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-            © {year} Karen Méndez — Todos los derechos reservados
+            © {year} LambNex — Todos los derechos reservados
           </p>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
             Diseñado y construido por mí · {contactInfo.location}

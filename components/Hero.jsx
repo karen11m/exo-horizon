@@ -94,7 +94,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-8 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-            Soy Karen Méndez, desarrolladora full-stack. Creo herramientas
+            Soy Karen Méndez, fundadora de LambNex. Creo herramientas
             funcionales — no solo páginas bonitas — para que tu negocio venda
             más y trabaje en automático.
           </p>
@@ -133,7 +133,7 @@ export default function Hero() {
 
         <div className="relative hidden justify-center lg:flex">
           <p className="v-label absolute -left-3 top-0 h-full font-mono text-[10px] uppercase tracking-[0.35em] text-muted/70">
-            Full-Stack — Estudio 001
+            LambNex — Estudio 001
           </p>
           <div className="relative">
             <svg
@@ -146,14 +146,14 @@ export default function Hero() {
               </defs>
               <text style={{ fontSize: "8.5px", letterSpacing: "2.2px" }} fill="currentColor" fontFamily="var(--font-jetbrains)">
                 <textPath href="#hero-circle">
-                  DESARROLLO WEB • AUTOMATIZACIÓN • IA • “CREO HERRAMIENTAS QUE FUNCIONAN” •
+                  LAMBNEX • DESARROLLO WEB • AUTOMATIZACIÓN • IA • “CREO HERRAMIENTAS QUE FUNCIONAN” •
                 </textPath>
               </text>
             </svg>
             <div className="absolute inset-8 flex flex-col items-center justify-center gap-2 border border-line bg-surface/70 backdrop-blur">
-              <span className="font-display text-6xl font-semibold">KM</span>
+              <span className="font-display text-6xl font-semibold">L/N</span>
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
-                Karen Méndez
+                LambNex
               </span>
             </div>
           </div>

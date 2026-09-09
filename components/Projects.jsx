@@ -8,9 +8,19 @@ export default function Projects({ projects = [] }) {
         return (
           <Reveal key={`${project.title}-${i}`} delay={(i % 3) * 70}>
             <article className="group relative flex h-full flex-col bg-bg p-7 transition-colors hover:bg-surface">
-              <span className="font-mono text-xs tracking-[0.25em] text-primary">
-                P.{num}
-              </span>
+              <div className="flex items-start justify-between">
+                <span className="font-mono text-xs tracking-[0.25em] text-primary">
+                  P.{num}
+                </span>
+                {project.emoji && (
+                  <span
+                    className="flex h-14 w-14 items-center justify-center border border-line bg-surface/60 text-3xl transition-colors group-hover:border-primary/50"
+                    aria-hidden="true"
+                  >
+                    {project.emoji}
+                  </span>
+                )}
+              </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-2">
                 <span className="border border-primary/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">

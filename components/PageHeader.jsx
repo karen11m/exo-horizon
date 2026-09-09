@@ -21,7 +21,7 @@ export default function PageHeader({ index = "00", title, accent, subtitle, rout
             {subtitle}
           </p>
           <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted/70 md:text-right">
-            Karen Méndez <br className="md:hidden" />
+            LambNex <br className="md:hidden" />
             <span className="hidden md:inline">— </span>
             Bogotá · 2026
           </p>
