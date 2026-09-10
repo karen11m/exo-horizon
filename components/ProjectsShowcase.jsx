@@ -1,50 +1,30 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import ProjectsCarousel from "./ProjectsCarousel";
 
 function monogramFor(title) {
-  return (
-    (title || "LN")
-      .split(/[\s\u2013-]+/)
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((w) => w[0].toUpperCase())
-      .join("") || "LN"
-  );
+  const words = (title || "LN")
+    .split(/[\s\u2013\u2014\u201C\u201D"-]+/)
+    .filter(Boolean)
+    .map((w) => w[0].toUpperCase());
+  if (words.length === 0) return "LN";
+  if (words.length === 1) return words[0] + (words[0][1] || "N");
+  return words[0] + words[words.length - 1];
 }
 
 export default function ProjectsShowcase({ projects = [] }) {
-  const [tag, setTag] = useState("Todos");
   const [open, setOpen] = useState(null);
-  const gridRef = useRef(null);
-
-  const tags = useMemo(
-    () => ["Todos", ...Array.from(new Set(projects.map((p) => p.tag)))],
-    [projects]
-  );
-
-  const filtered = useMemo(
-    () => (tag === "Todos" ? projects : projects.filter((p) => p.tag === tag)),
-    [tag, projects]
-  );
 
   const hasRealLink = (p) => p.github || (p.link && p.link.startsWith("http"));
 
-  const selectTag = (t) => {
-    setTag(t);
-    setOpen(null);
-    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <div>
-      <ProjectsCarousel projects={projects} onSelectTag={selectTag} />
+      <ProjectsCarousel projects={projects} />
 
-      {/* Filtros y grilla */}
-      <div ref={gridRef} className="scroll-mt-24 pt-20 md:pt-28">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
+      <div className="pt-20 md:pt-28">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <div>
             <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-[0.25em] text-primary">
               <span>✦ 03.2</span>
@@ -56,36 +36,12 @@ export default function ProjectsShowcase({ projects = [] }) {
             </h2>
           </div>
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">
-            {String(filtered.length).padStart(2, "0")} casos
+            {String(projects.length).padStart(2, "0")} casos
           </p>
         </div>
 
-        <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo">
-          {tags.map((t) => {
-            const count = t === "Todos" ? projects.length : projects.filter((p) => p.tag === t).length;
-            const active = tag === t;
-            return (
-              <button
-                key={t}
-                type="button"
-                onClick={() => selectTag(t)}
-                className={`flex items-center gap-2 border px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] transition-colors ${
-                  active
-                    ? "border-primary bg-primary text-bg"
-                    : "border-line-strong text-muted hover:border-primary hover:text-primary"
-                }`}
-              >
-                {t}
-                <span className={`${active ? "text-bg/70" : "text-secondary"}`}>
-                  {String(count).padStart(2, "0")}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
         <div className="grid gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((project, i) => {
+          {projects.map((project, i) => {
             const num = String(i + 1).padStart(2, "0");
             const isOpen = open === `${project.title}-${i}`;
             return (

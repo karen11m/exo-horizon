@@ -24,8 +24,8 @@ export default function Services() {
                   <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
                     SRV.0{i + 1}
                   </span>
-                  <span className="text-2xl" aria-hidden="true">
-                    {service.icon}
+                  <span className="font-mono text-xs text-primary/60" aria-hidden="true">
+                    ↗
                   </span>
                 </div>
                 <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight md:text-3xl">

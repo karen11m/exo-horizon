@@ -87,9 +87,7 @@ export default function Hero() {
             Transformo
             <br />
             problemas en{" "}
-            <span className="italic text-gradient">soluciones</span>
-            <br />
-            <span className="font-normal text-primary">{text}</span>
+            <span className="font-normal italic text-gradient">{text}</span>
             <span className="ml-1 inline-block h-[0.9em] w-[0.05em] translate-y-2 animate-pulse bg-primary align-baseline" aria-hidden="true" />
           </h1>
 
